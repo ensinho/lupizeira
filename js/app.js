@@ -25,6 +25,24 @@ const UI_ICONS = {
 const escapeHtml = (str = '') =>
   String(str).replace(/[&<>"']/g, (s) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]));
 
+// Allow only <strong class="about-stat">...</strong> markup inside About paragraphs.
+const renderAboutInline = (str = '') => {
+  const placeholders = [];
+  const withMarkers = String(str).replace(
+    /<strong class="about-stat">([\s\S]*?)<\/strong>/g,
+    (_match, inner) => {
+      const idx = placeholders.length;
+      placeholders.push(inner);
+      return `\u0000${idx}\u0000`;
+    }
+  );
+  const escaped = escapeHtml(withMarkers);
+  return escaped.replace(/\u0000(\d+)\u0000/g, (_m, i) => {
+    const safeInner = escapeHtml(placeholders[Number(i)] ?? '');
+    return `<strong class="about-stat">${safeInner}</strong>`;
+  });
+};
+
 class LupizeiraApp {
   constructor() {
     this.content = null;
@@ -65,6 +83,7 @@ class LupizeiraApp {
     this.renderNav();
     this.renderHero();
     this.renderAbout();
+    this.renderFreehand();
     this.renderPortfolio();
     this.renderStudio();
     this.renderProcess();
@@ -169,16 +188,19 @@ class LupizeiraApp {
     const el = document.getElementById('about');
     if (!el) return;
     const a = this.content.about;
+    const paragraphItems = Array.isArray(a.paragraphs)
+      ? a.paragraphs.filter((p) => typeof p === 'string' && p.trim().length > 0)
+      : [a.bio, a.bioSecondary].filter((p) => typeof p === 'string' && p.trim().length > 0);
+    const introParagraph = paragraphItems[0] ?? '';
+    const extraParagraphs = paragraphItems.slice(1);
+    const extraParagraphsHtml = extraParagraphs
+      .map((p) => `<p class="about-bio">${renderAboutInline(p)}</p>`)
+      .join('');
+    const aboutMoreId = 'about-more-content';
     const highlights = (a.highlights ?? []).map((h) => {
       if (typeof h === 'string') return `<li><h4>${escapeHtml(h)}</h4></li>`;
       return `<li><h4>${escapeHtml(h.title)}</h4>${h.description ? `<p>${escapeHtml(h.description)}</p>` : ''}</li>`;
     }).join('');
-    const facts = (a.facts ?? []).map((f) => `
-      <div class="about-fact">
-        <span class="about-fact-value">${escapeHtml(f.value)}</span>
-        <span class="about-fact-label">${escapeHtml(f.label)}</span>
-      </div>
-    `).join('');
     const galleryItems = a.gallery ?? [];
     const collage = galleryItems.length
       ? `<div class="about-collage">${galleryItems.slice(0, 4).map((g, i) => `
@@ -203,13 +225,71 @@ class LupizeiraApp {
           </div>
           <div class="about-text">
             <p class="about-lead">${escapeHtml(a.lead)}</p>
-            ${facts ? `<div class="about-facts">${facts}</div>` : ''}
-            <p class="about-bio">${escapeHtml(a.bio)}</p>            
-            ${a.bioSecondary ? `<p class="about-bio">${escapeHtml(a.bioSecondary)}</p>` : ''}            
+            ${introParagraph ? `
+              <div class="about-intro-wrap">
+                <p class="about-intro">${renderAboutInline(introParagraph)}</p>
+                ${extraParagraphs.length ? `
+                  <button type="button" class="about-read-toggle about-read-toggle--inside" aria-expanded="false" aria-controls="${aboutMoreId}">
+                    <span class="about-read-label">Ler mais</span>
+                    <span class="about-read-icon" aria-hidden="true">+</span>
+                  </button>
+                ` : ''}
+              </div>
+            ` : ''}
+            ${extraParagraphs.length ? `
+              <div id="${aboutMoreId}" class="about-more" hidden>
+                ${extraParagraphsHtml}
+              </div>
+            ` : ''}
             ${a.signature ? `<p class="about-signature">${escapeHtml(a.signature)}</p>` : ''}
           </div>
           ${highlights ? `<ul class="about-highlights">${highlights}</ul>` : ''}
         </div>
+      </div>
+    `;
+  }
+
+  renderFreehand() {
+    const el = document.getElementById('freehand');
+    if (!el) return;
+    const f = this.content.freehand;
+    if (!f || !Array.isArray(f.pairs) || f.pairs.length === 0) {
+      el.hidden = true;
+      return;
+    }
+    this._freehandFlat = [];
+    const pairsHtml = f.pairs.map((pair) => {
+      const sketchIndex = this._freehandFlat.length;
+      this._freehandFlat.push({ ...pair.sketch, category: `${pair.label} · sketch` });
+      const finalIndex = this._freehandFlat.length;
+      this._freehandFlat.push({ ...pair.final, category: `${pair.label} · final` });
+      return `
+        <article class="freehand-pair reveal">
+          <div class="freehand-pair-media">
+            <button type="button" class="freehand-item" data-findex="${sketchIndex}" aria-label="Ampliar sketch — ${escapeHtml(pair.label)}">
+              <img src="${escapeHtml(pair.sketch.image)}" alt="${escapeHtml(pair.sketch.alt)}" loading="lazy" decoding="async" />
+              <span class="freehand-tag">Sketch</span>
+            </button>
+            <span class="freehand-arrow" aria-hidden="true">→</span>
+            <button type="button" class="freehand-item" data-findex="${finalIndex}" aria-label="Ampliar resultado final — ${escapeHtml(pair.label)}">
+              <img src="${escapeHtml(pair.final.image)}" alt="${escapeHtml(pair.final.alt)}" loading="lazy" decoding="async" />
+              <span class="freehand-tag freehand-tag--final">Final</span>
+            </button>
+          </div>
+          ${pair.label ? `<p class="freehand-pair-label">${escapeHtml(pair.label)}</p>` : ''}
+        </article>
+      `;
+    }).join('');
+
+    el.innerHTML = `
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-index">02</span>
+          <span class="section-eyebrow">${escapeHtml(f.eyebrow ?? 'Processo autoral')}</span>
+          <h2 class="section-title">${escapeHtml(f.title)}</h2>
+          ${f.subtitle ? `<p class="section-subtitle">${escapeHtml(f.subtitle)}</p>` : ''}
+        </div>
+        <div class="freehand-grid">${pairsHtml}</div>
       </div>
     `;
   }
@@ -252,7 +332,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">02</span>
+          <span class="section-index">03</span>
           <span class="section-eyebrow">Trabalhos</span>
           <h2 class="section-title">${escapeHtml(p.title)}</h2>
           <p class="section-subtitle">${escapeHtml(p.subtitle ?? '')}</p>
@@ -277,7 +357,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">03</span>
+          <span class="section-index">04</span>
           <span class="section-eyebrow">${escapeHtml(s.title)}</span>
           <h2 class="section-title">${escapeHtml(s.name)}</h2>
         </div>
@@ -311,7 +391,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">04</span>
+          <span class="section-index">05</span>
           <span class="section-eyebrow">Processo</span>
           <h2 class="section-title">${escapeHtml(p.title)}</h2>
           <p class="section-subtitle">${escapeHtml(p.subtitle ?? '')}</p>
@@ -370,7 +450,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">05</span>
+          <span class="section-index">06</span>
           <span class="section-eyebrow">Feedbacks</span>
           <h2 class="section-title">${escapeHtml(t.title)}</h2>
           <p class="section-subtitle">${escapeHtml(t.subtitle ?? '')}</p> 
@@ -515,6 +595,21 @@ class LupizeiraApp {
       window.addEventListener('scroll', onScroll, { passive: true });
       onScroll();
     }
+
+    // About: expand/collapse long text
+    const aboutToggle = document.querySelector('.about-read-toggle');
+    aboutToggle?.addEventListener('click', () => {
+      const contentId = aboutToggle.getAttribute('aria-controls');
+      if (!contentId) return;
+      const moreContent = document.getElementById(contentId);
+      if (!moreContent) return;
+      const isExpanded = aboutToggle.getAttribute('aria-expanded') === 'true';
+      const nextExpanded = !isExpanded;
+      moreContent.hidden = !nextExpanded;
+      aboutToggle.setAttribute('aria-expanded', String(nextExpanded));
+      const label = aboutToggle.querySelector('.about-read-label');
+      if (label) label.textContent = nextExpanded ? 'Ler menos' : 'Ler mais';
+    });
   }
 
   initRevealOnScroll() {
@@ -560,6 +655,7 @@ class LupizeiraApp {
 
     const open = (i, source) => {
       if (source === 'testimonials') items = this._testimonials ?? [];
+      else if (source === 'freehand') items = this._freehandFlat ?? [];
       else items = this._portfolioFlat ?? [];
       index = i;
       update();
@@ -586,6 +682,12 @@ class LupizeiraApp {
       if (portfolioTrigger) {
         const i = Number(portfolioTrigger.dataset.index);
         if (Number.isInteger(i)) open(i, 'portfolio');
+        return;
+      }
+      const freehandTrigger = e.target.closest('.freehand-item');
+      if (freehandTrigger) {
+        const i = Number(freehandTrigger.dataset.findex);
+        if (Number.isInteger(i)) open(i, 'freehand');
         return;
       }
       const testimonialTrigger = e.target.closest('.testimonial-thumb');

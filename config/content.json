@@ -10,6 +10,7 @@
     "logo": "Lupizeira",
     "links": [
       { "label": "Sobre", "href": "#about" },
+      { "label": "Freehand", "href": "#freehand" },
       { "label": "Portfólio", "href": "#portfolio" },
       { "label": "Estúdio", "href": "#studio" },
       { "label": "Depoimentos", "href": "#testimonials" }
@@ -40,20 +41,48 @@
   },
   "about": {
     "title": "Sobre a artista",
-    "lead": "Tatuo o que cura, o que protege e o que vira lembrança de pele.",
-    "bio": "Sou a Lupizeira, tatuadora autoral em Fortaleza. Meu trabalho gira em torno de traço fino, sombras suaves e composições que respiram — escritas, florais, pet tattoo, fine line e simbologias pessoais que pedem leveza e duração ao mesmo tempo.",
-    "bioSecondary": "Cada sessão começa por uma conversa: entendo o porquê da peça, estudo o corpo e adapto o desenho para envelhecer bem com você. Acredito em tatuagem como gesto íntimo — e em estar perto do começo ao pós-cuidado.",
-    "signature": "— Lupizeira",
+    "lead": "Tatuagens delicadas, mas fortes. Com presenca e destaque.",
+    "paragraphs": [
+      "Meu trabalho e autentico. Em mais de <strong class=\"about-stat\">7 anos</strong> tatuando, eu faco questao de criar uma arte nova pra voce — seja uma ideia mais simples e minimalista ou um projeto maior, ate fechamento — sempre pensando no encaixe anatomico, pra que a tatuagem valorize o seu corpo.",
+      "Um dos meus diferenciais e o freehand. Eu crio a arte direto na sua pele com caneta, estudando a estrutura e o encaixe no seu corpo antes de tatuar. Isso traz mais movimento, liberdade e naturalidade pra cada trabalho.",
+      "Aqui, a tatuagem e feita na base da confianca. Eu preciso que voce me de liberdade artistica e confie no que vai ficar bom pra voce. E assim que eu consigo pegar a sua essencia e transformar em arte.",
+      "Eu nao vejo a tatuagem como algo do momento, mas como algo pra sempre. Entao pra que pressa, se vai ser pra sempre? Eu separo um dia inteiro pra te atender, pra pensar com calma em cada detalhe.",
+      "Bem-vindo ao meu mundo. A tatuagem e liberdade, expressao e significado — mas tambem e estetica, personalidade e vida.",
+      "Toda ideia e bem-vinda. Mas em todas, voce vai ver o meu toque."
+    ],
+    "signature": "- Lupizeira",
     "gallery": [
       { "image": "assets/Icons/LupiPFP2.jpeg", "alt": "Retrato da Lupizeira", "role": "main" },
       { "image": "assets/Icons/LupiImage4.jpeg", "alt": "Lupizeira em momento de bastidor", "role": "candid" },
       { "image": "assets/BackgroundImages/StudioImage3.jpeg", "alt": "Lupizeira preparando a maca de tatuagem", "role": "studio" },
       { "image": "assets/BackgroundImages/DogImage2.jpeg", "alt": "Os cachorros da Lupi descansando juntos", "role": "pet" }
-    ],    
-    "facts": [
-      { "value": "7+", "label": "anos tatuando" },
-      { "value": "500+", "label": "clientes atendidas" },
-      { "value": "Aldeota", "label": "Fortaleza · CE" }
+    ]
+  },
+  "freehand": {
+    "title": "Freehand",
+    "subtitle": "Do desenho na pele ao resultado final — cada peça nasce única, traçada à mão livre no momento.",
+    "eyebrow": "Processo autoral",
+    "pairs": [
+      {
+        "label": "",
+        "sketch":  { "image": "assets/FreeHand/FreeHand2.0.jpeg", "alt": "Sketch freehand de água-viva traçado na pele em roxo" },
+        "final":   { "image": "assets/FreeHand/FreeHand2.1.jpeg", "alt": "Tatuagem finalizada de água-viva em blackwork delicado" }
+      },
+      {
+        "label": "",
+        "sketch":  { "image": "assets/FreeHand/FreeHand1.0.jpeg", "alt": "Sketch freehand de lírio e elementos orgânicos na pele" },
+        "final":   { "image": "assets/FreeHand/FreeHand1.1.jpeg", "alt": "Tatuagem finalizada de lírio com elementos orgânicos no ombro" }
+      },
+      {
+        "label": "",
+        "sketch":  { "image": "assets/FreeHand/Freehand3.0.jpeg", "alt": "Sketch freehand de composição floral traçado no braço" },
+        "final":   { "image": "assets/FreeHand/Freehand3.1.jpeg", "alt": "Tatuagem finalizada de composição floral no braço" }
+      },
+      {
+        "label": "",
+        "sketch":  { "image": "assets/FreeHand/Freehand4.0.jpeg", "alt": "Sketch freehand de dragão no antebraço" },
+        "final":   { "image": "assets/FreeHand/Freehand4.1.jpeg", "alt": "Tatuagem finalizada de dragão no antebraço em blackwork delicado" }
+      }
     ]
   },
   "portfolio": {
