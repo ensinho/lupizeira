@@ -67,6 +67,42 @@
       { "image": "assets/PostsTattoo/SelectedWork10.webp", "alt": { "pt": "Trabalho autoral em traço fino", "en": "Original fine line work" }, "label": { "pt": "Autoral", "en": "Original" } }
     ]
   },
+  "announcement": {
+    "enabled": true,
+    "flag": "🇺🇸",
+    "bannerText": { "pt": "Agenda aberta em Atlanta · Outubro 2026", "en": "Open booking in Atlanta · October 2026" },
+    "moreLabel": { "pt": "Saber mais", "en": "Learn more" },
+    "eyebrow": { "pt": "Guest spot", "en": "Guest spot" },
+    "title": { "pt": "Atlanta · Agenda aberta", "en": "Atlanta · Open Booking" },
+    "date": { "pt": "Outubro de 2026", "en": "October 2026" },
+    "badge": { "pt": "Vagas limitadas", "en": "Limited spots" },
+    "tags": [
+      { "pt": "Botânica", "en": "Botanic" },
+      { "pt": "Blackwork", "en": "Black Work" },
+      { "pt": "Fine Line", "en": "Fine Line" }
+    ],
+    "text": {
+      "pt": "Olá! Em outubro de 2026 estarei em Atlanta, na Geórgia, atendendo para tatuar. O atendimento acontece somente com horário agendado. Te vejo lá!",
+      "en": "Hi! In October 2026 I'll be in Atlanta, Georgia, tattooing. Sessions are by appointment only. See you there!"
+    },
+    "pricesTitle": { "pt": "Valores a partir de", "en": "Prices from" },
+    "prices": [
+      { "style": { "pt": "Minimalista", "en": "Minimalist" }, "from": "US$ 200" },
+      { "style": { "pt": "Blackwork", "en": "Blackwork" }, "from": "US$ 350" },
+      { "style": { "pt": "Floral", "en": "Floral" }, "from": "US$ 500" }
+    ],
+    "pricesNote": {
+      "pt": "Para consultar a tabela completa de valores e fazer um orçamento personalizado, me envie a sua ideia.",
+      "en": "For the full price list and a personalized quote, just send me your idea."
+    },
+    "cta": {
+      "label": { "pt": "Agendar em Atlanta", "en": "Book in Atlanta" },
+      "href": {
+        "pt": "https://wa.me/5585994212930?text=Oi%2C%20Lupi!%20Vi%20o%20an%C3%BAncio%20de%20Atlanta%20(outubro%20de%202026)%20e%20quero%20agendar%20uma%20tatuagem.%20Minha%20ideia%20%C3%A9%3A%20",
+        "en": "https://wa.me/5585994212930?text=Hi%2C%20Lu!%20I%20saw%20your%20Atlanta%20announcement%20(October%202026)%20and%20I'd%20like%20to%20book%20a%20tattoo.%20My%20idea%20is%3A%20"
+      }
+    }
+  },
   "about": {
     "title": { "pt": "Sobre a artista", "en": "About the artist" },
     "eyebrow": { "pt": "A artista", "en": "The artist" },

@@ -182,6 +182,33 @@ class LupizeiraApp {
     window.addEventListener('scroll', onScroll, { passive: true });
     onScroll();
 
+    // Announcement "Saber mais" modal (delegated once; bar/modal re-render each language change)
+    const annModal = document.getElementById('announcement-modal');
+    const openAnn = () => {
+      if (!annModal) return;
+      annModal.hidden = false;
+      requestAnimationFrame(() => annModal.classList.add('is-open'));
+      document.body.classList.add('is-locked');
+      annModal.querySelector('[data-ann-close]')?.focus();
+    };
+    const closeAnn = () => {
+      if (!annModal) return;
+      annModal.classList.remove('is-open');
+      document.body.classList.remove('is-locked');
+      setTimeout(() => { annModal.hidden = true; }, 340);
+    };
+    document.addEventListener('click', (e) => {
+      if (e.target.closest('[data-ann-more]')) { openAnn(); return; }
+      if (e.target.closest('[data-ann-close]') || e.target === annModal) closeAnn();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && annModal && !annModal.hidden) closeAnn();
+    });
+    window.addEventListener('resize', () => {
+      const b = document.getElementById('announcement-bar');
+      if (b && !b.hidden) document.documentElement.style.setProperty('--ann-h', b.offsetHeight + 'px');
+    }, { passive: true });
+
     this.initLightbox();
     this.bindCarouselWindowDrag();
   }
@@ -195,6 +222,7 @@ class LupizeiraApp {
   }
 
   render() {
+    this.renderAnnouncement();
     this.renderNav();
     this.renderHero();
     this.renderAbout();
@@ -211,6 +239,64 @@ class LupizeiraApp {
   }
 
   // ----- Sections -----
+
+  renderAnnouncement() {
+    const bar = document.getElementById('announcement-bar');
+    const modal = document.getElementById('announcement-modal');
+    const a = this.content.announcement;
+    if (!a || !a.enabled) {
+      if (bar) { bar.hidden = true; bar.innerHTML = ''; }
+      if (modal) { modal.hidden = true; modal.innerHTML = ''; }
+      document.body.classList.remove('has-announcement');
+      document.documentElement.style.setProperty('--ann-h', '0px');
+      return;
+    }
+    if (bar) {
+      bar.innerHTML = `
+        <div class="container announcement-bar-inner">
+          <p class="announcement-bar-text">
+            ${a.flag ? `<span class="announcement-bar-flag" aria-hidden="true">${escapeHtml(a.flag)}</span>` : ''}
+            <span>${escapeHtml(a.bannerText ?? a.title)}</span>
+          </p>
+          <button type="button" class="announcement-bar-btn" data-ann-more>${escapeHtml(a.moreLabel ?? 'Saber mais')}</button>
+        </div>
+      `;
+      bar.hidden = false;
+      document.body.classList.add('has-announcement');
+      // Offset the fixed nav below the bar (height is dynamic across languages/breakpoints)
+      const setH = () => document.documentElement.style.setProperty('--ann-h', bar.offsetHeight + 'px');
+      setH();
+      requestAnimationFrame(setH);
+    }
+    if (modal) {
+      const tags = (a.tags ?? []).map((t) => `<li>${escapeHtml(t)}</li>`).join('');
+      const priceRows = (a.prices ?? []).map((p) => `
+        <li class="announcement-price">
+          <span class="announcement-price-style">${escapeHtml(p.style)}</span>
+          <span class="announcement-price-value">${escapeHtml(p.from)}</span>
+        </li>
+      `).join('');
+      const pricesBlock = priceRows ? `
+        ${a.pricesTitle ? `<p class="announcement-prices-title">${escapeHtml(a.pricesTitle)}</p>` : ''}
+        <ul class="announcement-prices">${priceRows}</ul>
+        ${a.pricesNote ? `<p class="announcement-prices-note">${escapeHtml(a.pricesNote)}</p>` : ''}
+      ` : '';
+      modal.innerHTML = `
+        <div class="announcement-card" role="document">
+          <button type="button" class="announcement-close" data-ann-close aria-label="Fechar">×</button>
+          ${a.flag ? `<span class="announcement-card-flag" aria-hidden="true">${escapeHtml(a.flag)}</span>` : ''}
+          ${a.eyebrow ? `<span class="announcement-card-eyebrow">${escapeHtml(a.eyebrow)}</span>` : ''}
+          <h2 class="announcement-card-title">${escapeHtml(a.title)}</h2>
+          ${a.date ? `<p class="announcement-card-date">${escapeHtml(a.date)}</p>` : ''}
+          ${a.badge ? `<span class="announcement-card-badge">${escapeHtml(a.badge)}</span>` : ''}
+          ${tags ? `<ul class="announcement-card-tags">${tags}</ul>` : ''}
+          <p class="announcement-card-text">${escapeHtml(a.text)}</p>
+          ${pricesBlock}
+          ${a.cta ? `<a href="${escapeHtml(a.cta.href)}" class="btn btn-whatsapp btn-large" target="_blank" rel="noopener">${UI_ICONS.whatsapp}<span>${escapeHtml(a.cta.label)}</span></a>` : ''}
+        </div>
+      `;
+    }
+  }
 
   renderNav() {
     const nav = document.getElementById('main-nav');
