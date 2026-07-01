@@ -25,6 +25,37 @@ const UI_ICONS = {
 const escapeHtml = (str = '') =>
   String(str).replace(/[&<>"']/g, (s) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]));
 
+// ----- Internationalization (PT / EN) -----
+const LANG_KEY = 'lupizeira-lang';
+const SUPPORTED_LANGS = ['pt', 'en'];
+const DEFAULT_LANG = 'pt';
+
+// A translation leaf is EXACTLY { pt, en } and nothing else.
+const isLangLeaf = (v) =>
+  v && typeof v === 'object' && !Array.isArray(v) &&
+  Object.prototype.hasOwnProperty.call(v, 'pt') &&
+  Object.prototype.hasOwnProperty.call(v, 'en') &&
+  Object.keys(v).length === 2;
+
+// Recursively resolve every {pt,en} leaf to the active-language string.
+// Arrays, image paths, hrefs and all other structure pass through unchanged.
+const localize = (node, lang) => {
+  if (Array.isArray(node)) return node.map((n) => localize(n, lang));
+  if (node && typeof node === 'object') {
+    if (isLangLeaf(node)) return node[lang] ?? node.pt ?? node.en ?? '';
+    const out = {};
+    for (const k of Object.keys(node)) out[k] = localize(node[k], lang);
+    return out;
+  }
+  return node; // string | number | boolean | null
+};
+
+// First letter of an author label, ignoring a leading "@", for monogram avatars.
+const monogramLetter = (name = '') => {
+  const m = String(name).replace(/^@+/, '').trim();
+  return (m.charAt(0) || '•').toUpperCase();
+};
+
 // Allow only <strong class="about-stat">...</strong> markup inside About paragraphs.
 const renderAboutInline = (str = '') => {
   const placeholders = [];
@@ -46,35 +77,119 @@ const renderAboutInline = (str = '') => {
 class LupizeiraApp {
   constructor() {
     this.content = null;
+    this.rawContent = null;
+    this.lang = DEFAULT_LANG;
     this.lightbox = null;
+    this.carouselDrag = null;
+    this._globalsBound = false;
     this.init();
   }
 
   async init() {
     await this.loadContent();
-    if (!this.content) return;
-    this.applyMeta();
-    this.render();
-    this.attachListeners();
-    this.initRevealOnScroll();
-    this.initLightbox();
-    this.initTestimonialsCarousel();
-    this.initHeroShowcaseRotator();
+    if (!this.rawContent) return;
+    this.lang = this.getInitialLang();
+    this.bindGlobalListeners();
+    this.renderAll();
   }
 
   async loadContent() {
     try {
       const res = await fetch('config/content.json');
-      this.content = await res.json();
+      this.rawContent = await res.json();
     } catch (err) {
       console.error('Falha ao carregar content.json:', err);
     }
   }
 
+  // ----- Language -----
+
+  getInitialLang() {
+    let stored = null;
+    try { stored = localStorage.getItem(LANG_KEY); } catch { /* private mode */ }
+    if (SUPPORTED_LANGS.includes(stored)) return stored;
+    const nav = (navigator.language || '').toLowerCase();
+    return nav.startsWith('en') ? 'en' : DEFAULT_LANG;
+  }
+
+  applyLanguage(lang) {
+    this.lang = SUPPORTED_LANGS.includes(lang) ? lang : DEFAULT_LANG;
+    this.content = localize(this.rawContent, this.lang);
+  }
+
+  setLanguage(lang) {
+    if (lang === this.lang || !SUPPORTED_LANGS.includes(lang)) return;
+    try { localStorage.setItem(LANG_KEY, lang); } catch { /* ignore */ }
+    this.lang = lang;
+    this.renderAll();
+  }
+
+  // Re-run on every language change: resolve content, re-render, re-bind
+  // DOM-scoped listeners. Window/document listeners are bound once (see
+  // bindGlobalListeners) and read live state, so they are NOT touched here.
+  renderAll() {
+    this.applyLanguage(this.lang);
+    this.applyMeta();
+    this.render();
+    this.attachDomListeners();
+    this.initRevealOnScroll();
+    this.initTestimonialsCarousel();
+    this.initHeroShowcaseRotator();
+  }
+
+  // Bound exactly once (guarded). Handlers read live DOM/instance state so
+  // they survive full re-renders on language toggle without duplicating.
+  bindGlobalListeners() {
+    if (this._globalsBound) return;
+    this._globalsBound = true;
+
+    // Delegated on the stable #main-nav (its innerHTML changes each render,
+    // but the node itself is never replaced) — handles the language toggle
+    // and the mobile hamburger.
+    const nav = document.getElementById('main-nav');
+    nav?.addEventListener('click', (e) => {
+      if (e.target.closest('[data-lang-toggle]')) {
+        this.setLanguage(this.lang === 'pt' ? 'en' : 'pt');
+        return;
+      }
+      const hamburger = e.target.closest('.nav-toggle');
+      if (hamburger) {
+        const open = nav.classList.toggle('menu-open');
+        hamburger.setAttribute('aria-expanded', String(open));
+      }
+    });
+
+    // Smooth scroll for in-page anchors (delegated once; covers nav links
+    // recreated on every render plus static anchors, with no duplication).
+    document.addEventListener('click', (e) => {
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const href = a.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      nav?.classList.remove('menu-open');
+      nav?.querySelector('.nav-toggle')?.setAttribute('aria-expanded', 'false');
+    });
+
+    // Nav background on scroll.
+    const onScroll = () => {
+      const n = document.getElementById('main-nav');
+      n?.classList.toggle('scrolled', window.scrollY > 80);
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    this.initLightbox();
+    this.bindCarouselWindowDrag();
+  }
+
   applyMeta() {
     const { meta } = this.content;
+    document.documentElement.lang = this.lang === 'en' ? 'en' : 'pt-BR';
     if (!meta) return;
-    if (meta.lang) document.documentElement.lang = meta.lang;
     if (meta.title) document.title = meta.title;
     document.querySelector('meta[name="description"]')?.setAttribute('content', meta.description ?? '');
   }
@@ -83,6 +198,7 @@ class LupizeiraApp {
     this.renderNav();
     this.renderHero();
     this.renderAbout();
+    this.renderBotanica();
     this.renderFreehand();
     this.renderPortfolio();
     this.renderStudio();
@@ -113,6 +229,11 @@ class LupizeiraApp {
           </button>
           <div class="nav-links">
             ${links}
+            <button type="button" class="lang-toggle" data-lang-toggle aria-label="${this.lang === 'pt' ? 'Mudar idioma para inglês' : 'Switch language to Portuguese'}">
+              <span class="lang-opt${this.lang === 'pt' ? ' is-active' : ''}" aria-hidden="true">PT</span>
+              <span class="lang-sep" aria-hidden="true">/</span>
+              <span class="lang-opt${this.lang === 'en' ? ' is-active' : ''}" aria-hidden="true">EN</span>
+            </button>
             <a href="${escapeHtml(ctaHref)}" class="btn btn-primary nav-cta" target="_blank" rel="noopener">${UI_ICONS.calendar}<span>${escapeHtml(data?.ctaLabel ?? 'Agendar')}</span></a>
           </div>
         </div>
@@ -150,7 +271,7 @@ class LupizeiraApp {
             <div class="hero-avatar">
               <img src="${escapeHtml(h.avatar)}" alt="${escapeHtml(h.avatarAlt ?? h.name)}" loading="eager" decoding="async" />
             </div>
-            <span class="hero-eyebrow">Tatuagem autoral · Fortaleza-CE</span>
+            <span class="hero-eyebrow">${escapeHtml(h.eyebrow ?? 'Tatuagem autoral · Fortaleza-CE')}</span>
             <h1 class="hero-title">${escapeHtml(h.name)}</h1>
             ${h.signature ? `<span class="hero-signature" aria-hidden="true">${escapeHtml(h.signature)}</span>` : ''}
             <p class="hero-tagline">${escapeHtml(h.tagline)}</p>
@@ -215,7 +336,7 @@ class LupizeiraApp {
       <div class="container">
         <div class="section-header reveal">
           <span class="section-index">01</span>
-          <span class="section-eyebrow">A artista</span>
+          <span class="section-eyebrow">${escapeHtml(a.eyebrow ?? 'A artista')}</span>
           <h2 class="section-title">${escapeHtml(a.title)}</h2>
         </div>
         <div class="about-content reveal">
@@ -230,7 +351,7 @@ class LupizeiraApp {
                 <p class="about-intro">${renderAboutInline(introParagraph)}</p>
                 ${extraParagraphs.length ? `
                   <button type="button" class="about-read-toggle about-read-toggle--inside" aria-expanded="false" aria-controls="${aboutMoreId}">
-                    <span class="about-read-label">Ler mais</span>
+                    <span class="about-read-label">${escapeHtml(this.content.ui?.readMore ?? 'Ler mais')}</span>
                     <span class="about-read-icon" aria-hidden="true">+</span>
                   </button>
                 ` : ''}
@@ -245,6 +366,38 @@ class LupizeiraApp {
           </div>
           ${highlights ? `<ul class="about-highlights">${highlights}</ul>` : ''}
         </div>
+      </div>
+    `;
+  }
+
+  renderBotanica() {
+    const el = document.getElementById('botanica');
+    if (!el) return;
+    const b = this.content.botanica;
+    if (!b || !Array.isArray(b.items) || b.items.length === 0) {
+      el.hidden = true;
+      return;
+    }
+    el.hidden = false;
+    this._botanicaFlat = [];
+    const itemsHtml = b.items.map((item) => {
+      const idx = this._botanicaFlat.length;
+      this._botanicaFlat.push({ ...item, category: b.title });
+      return `
+        <button type="button" class="botanica-item" data-bindex="${idx}" aria-label="Ampliar ${escapeHtml(item.alt)}">
+          <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt)}" loading="lazy" decoding="async" />
+        </button>
+      `;
+    }).join('');
+    el.innerHTML = `
+      <div class="container">
+        <div class="section-header reveal">
+          <span class="section-index">02</span>
+          <span class="section-eyebrow">${escapeHtml(b.eyebrow ?? 'Botânica')}</span>
+          <h2 class="section-title">${escapeHtml(b.title)}</h2>
+          ${b.description ? `<p class="section-subtitle botanica-description">${escapeHtml(b.description)}</p>` : ''}
+        </div>
+        <div class="botanica-grid reveal">${itemsHtml}</div>
       </div>
     `;
   }
@@ -284,11 +437,12 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">02</span>
+          <span class="section-index">03</span>
           <span class="section-eyebrow">${escapeHtml(f.eyebrow ?? 'Processo autoral')}</span>
           <h2 class="section-title">${escapeHtml(f.title)}</h2>
           ${f.subtitle ? `<p class="section-subtitle">${escapeHtml(f.subtitle)}</p>` : ''}
         </div>
+        ${f.description ? `<p class="freehand-description reveal">${escapeHtml(f.description)}</p>` : ''}
         <div class="freehand-grid">${pairsHtml}</div>
       </div>
     `;
@@ -332,8 +486,8 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">03</span>
-          <span class="section-eyebrow">Trabalhos</span>
+          <span class="section-index">04</span>
+          <span class="section-eyebrow">${escapeHtml(p.eyebrow ?? 'Trabalhos')}</span>
           <h2 class="section-title">${escapeHtml(p.title)}</h2>
           <p class="section-subtitle">${escapeHtml(p.subtitle ?? '')}</p>
         </div>
@@ -357,7 +511,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">04</span>
+          <span class="section-index">05</span>
           <span class="section-eyebrow">${escapeHtml(s.title)}</span>
           <h2 class="section-title">${escapeHtml(s.name)}</h2>
         </div>
@@ -391,8 +545,8 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">05</span>
-          <span class="section-eyebrow">Processo</span>
+          <span class="section-index">06</span>
+          <span class="section-eyebrow">${escapeHtml(p.eyebrow ?? 'Processo')}</span>
           <h2 class="section-title">${escapeHtml(p.title)}</h2>
           <p class="section-subtitle">${escapeHtml(p.subtitle ?? '')}</p>
         </div>
@@ -433,15 +587,20 @@ class LupizeiraApp {
     const cards = this._testimonials.map((item, i) => {
       const text = item.text ?? '';
       const author = item.author ?? '';
+      const date = item.date ?? '';
+      const avatar = item.avatar
+        ? `<span class="testimonial-avatar"><img src="${escapeHtml(item.avatar)}" alt="${escapeHtml(author)}" loading="lazy" decoding="async" /></span>`
+        : `<span class="testimonial-avatar testimonial-monogram" aria-hidden="true">${escapeHtml(monogramLetter(author))}</span>`;
       return `
         <article class="testimonial-card" data-tindex="${i}">
-          <button type="button" class="testimonial-thumb" data-tindex="${i}" aria-label="Ver imagem do depoimento de ${escapeHtml(author)}">
-            <img src="${escapeHtml(item.image)}" alt="${escapeHtml(item.alt ?? 'Depoimento')}" loading="lazy" decoding="async" />
-          </button>
           <div class="testimonial-body">
+            <header class="testimonial-head">
+              ${avatar}
+              <span class="testimonial-author">${escapeHtml(author)}</span>
+            </header>
             <svg class="testimonial-quote" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.13 8.5C7.8 8.5 6.7 9.6 6.7 10.93c0 1.34 1.1 2.43 2.43 2.43.34 0 .67-.07.97-.2-.05 1.97-1.3 3.55-3.06 4.07l.49 1.27c2.95-.8 4.97-3.4 4.97-6.4 0-2.04-1.66-3.6-3.37-3.6zm8.4 0c-1.34 0-2.44 1.1-2.44 2.43 0 1.34 1.1 2.43 2.43 2.43.34 0 .67-.07.97-.2-.04 1.97-1.3 3.55-3.05 4.07l.48 1.27c2.96-.8 4.98-3.4 4.98-6.4 0-2.04-1.66-3.6-3.37-3.6z"/></svg>
             <p class="testimonial-text">${escapeHtml(text)}</p>
-            <footer class="testimonial-author">${escapeHtml(author)}</footer>
+            ${date ? `<footer class="testimonial-date">${escapeHtml(date)}</footer>` : ''}
           </div>
         </article>
       `;
@@ -450,10 +609,10 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">06</span>
-          <span class="section-eyebrow">Feedbacks</span>
+          <span class="section-index">07</span>
+          <span class="section-eyebrow">${escapeHtml(t.eyebrow ?? 'Feedbacks')}</span>
           <h2 class="section-title">${escapeHtml(t.title)}</h2>
-          <p class="section-subtitle">${escapeHtml(t.subtitle ?? '')}</p> 
+          <p class="section-subtitle">${escapeHtml(t.subtitle ?? '')}</p>
         </div>
         ${t.featuredQuote ? `
           <figure class="featured-quote reveal">
@@ -542,7 +701,7 @@ class LupizeiraApp {
         <div class="footer-content">
           <p class="footer-copyright">${escapeHtml(f.copyright)}</p>
           <p class="footer-tagline">${escapeHtml(f.builtWith)}</p>
-          <a href="#hero" class="back-to-top">${UI_ICONS.arrowUp}<span>Voltar ao topo</span></a>
+          <a href="#hero" class="back-to-top">${UI_ICONS.arrowUp}<span>${escapeHtml(this.content.ui?.backToTop ?? 'Voltar ao topo')}</span></a>
         </div>
       </div>
     `;
@@ -560,41 +719,13 @@ class LupizeiraApp {
 
   // ----- Behavior -----
 
-  attachListeners() {
-    const nav = document.getElementById('main-nav');
-    const toggle = nav?.querySelector('.nav-toggle');
-    const closeMenu = () => {
-      nav?.classList.remove('menu-open');
-      toggle?.setAttribute('aria-expanded', 'false');
-    };
-
-    toggle?.addEventListener('click', () => {
-      const open = nav.classList.toggle('menu-open');
-      toggle.setAttribute('aria-expanded', String(open));
-    });
-
-    // Smooth scroll + close menu on link click
-    document.querySelectorAll('a[href^="#"]').forEach((a) => {
-      a.addEventListener('click', (e) => {
-        const href = a.getAttribute('href');
-        if (!href || href === '#') return;
-        const target = document.querySelector(href);
-        if (target) {
-          e.preventDefault();
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          closeMenu();
-        }
-      });
-    });
-
-    // Nav background on scroll
-    if (nav) {
-      const onScroll = () => {
-        nav.classList.toggle('scrolled', window.scrollY > 80);
-      };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll();
-    }
+  // DOM-scoped listeners re-bound on every render. These attach to elements
+  // that are recreated each render, so the previous elements (and their
+  // listeners) are discarded — no duplication. Window/document listeners live
+  // in bindGlobalListeners (bound once).
+  attachDomListeners() {
+    const readMore = this.content.ui?.readMore ?? 'Ler mais';
+    const readLess = this.content.ui?.readLess ?? 'Ler menos';
 
     // About: expand/collapse long text
     const aboutToggle = document.querySelector('.about-read-toggle');
@@ -608,16 +739,20 @@ class LupizeiraApp {
       moreContent.hidden = !nextExpanded;
       aboutToggle.setAttribute('aria-expanded', String(nextExpanded));
       const label = aboutToggle.querySelector('.about-read-label');
-      if (label) label.textContent = nextExpanded ? 'Ler menos' : 'Ler mais';
+      if (label) label.textContent = nextExpanded ? readLess : readMore;
     });
   }
 
   initRevealOnScroll() {
     const els = document.querySelectorAll('.reveal');
-    if (!('IntersectionObserver' in window)) {
+    // On a language re-render, reveal instantly (no full-page re-fade); only
+    // animate the scroll reveal on the first load.
+    if (this._hasRendered || !('IntersectionObserver' in window)) {
       els.forEach((el) => el.classList.add('is-visible'));
+      this._hasRendered = true;
       return;
     }
+    this._hasRendered = true;
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -654,8 +789,8 @@ class LupizeiraApp {
     };
 
     const open = (i, source) => {
-      if (source === 'testimonials') items = this._testimonials ?? [];
-      else if (source === 'freehand') items = this._freehandFlat ?? [];
+      if (source === 'freehand') items = this._freehandFlat ?? [];
+      else if (source === 'botanica') items = this._botanicaFlat ?? [];
       else items = this._portfolioFlat ?? [];
       index = i;
       update();
@@ -690,10 +825,10 @@ class LupizeiraApp {
         if (Number.isInteger(i)) open(i, 'freehand');
         return;
       }
-      const testimonialTrigger = e.target.closest('.testimonial-thumb');
-      if (testimonialTrigger) {
-        const i = Number(testimonialTrigger.dataset.tindex);
-        if (Number.isInteger(i)) open(i, 'testimonials');
+      const botanicaTrigger = e.target.closest('.botanica-item');
+      if (botanicaTrigger) {
+        const i = Number(botanicaTrigger.dataset.bindex);
+        if (Number.isInteger(i)) open(i, 'botanica');
       }
     });
 
@@ -728,6 +863,24 @@ class LupizeiraApp {
 
   // ----- Testimonials Carousel -----
 
+  // Bound once. Reads this.carouselDrag (refreshed each render) so the drag
+  // always targets the live track after a language re-render.
+  bindCarouselWindowDrag() {
+    window.addEventListener('mousemove', (e) => {
+      const d = this.carouselDrag;
+      if (!d || !d.isDown) return;
+      const dx = e.pageX - d.startX;
+      if (Math.abs(dx) > 4) d.moved = true;
+      d.track.scrollLeft = d.startScroll - dx;
+    });
+    window.addEventListener('mouseup', () => {
+      const d = this.carouselDrag;
+      if (!d || !d.isDown) return;
+      d.isDown = false;
+      d.track.classList.remove('is-dragging');
+    });
+  }
+
   initTestimonialsCarousel() {
     const root = document.querySelector('.testimonials-carousel');
     if (!root) return;
@@ -737,6 +890,10 @@ class LupizeiraApp {
     const dotsWrap = root.querySelector('.carousel-dots');
     const cards = Array.from(track.querySelectorAll('.testimonial-card'));
     if (!cards.length) return;
+
+    // Refresh drag state for the freshly-rendered track; the window-level
+    // move/up handlers (bound once) read this object.
+    this.carouselDrag = { track, isDown: false, startX: 0, startScroll: 0, moved: false };
 
     let index = 0;
 
@@ -781,41 +938,24 @@ class LupizeiraApp {
       else if (e.key === 'ArrowRight') { e.preventDefault(); goTo(index + 1); }
     });
 
-    // Mouse drag-to-scroll
-    let isDown = false;
-    let startX = 0;
-    let startScroll = 0;
-    let moved = false;
-
-    const onDown = (e) => {
-      isDown = true;
-      moved = false;
-      startX = e.pageX;
-      startScroll = track.scrollLeft;
+    // Mouse drag-to-scroll. The window-level move/up handlers are bound once
+    // (bindCarouselWindowDrag) and read this.carouselDrag, refreshed above, so
+    // they always act on the current track — no stale reference after a toggle.
+    const drag = this.carouselDrag;
+    track.addEventListener('mousedown', (e) => {
+      drag.isDown = true;
+      drag.moved = false;
+      drag.startX = e.pageX;
+      drag.startScroll = track.scrollLeft;
       track.classList.add('is-dragging');
-    };
-    const onMove = (e) => {
-      if (!isDown) return;
-      const dx = e.pageX - startX;
-      if (Math.abs(dx) > 4) moved = true;
-      track.scrollLeft = startScroll - dx;
-    };
-    const onUp = () => {
-      if (!isDown) return;
-      isDown = false;
-      track.classList.remove('is-dragging');
-    };
+    });
 
-    track.addEventListener('mousedown', onDown);
-    window.addEventListener('mousemove', onMove);
-    window.addEventListener('mouseup', onUp);
-
-    // Suppress click on cards/thumbs after a drag
+    // Suppress click on cards after a drag
     track.addEventListener('click', (e) => {
-      if (moved) {
+      if (drag.moved) {
         e.preventDefault();
         e.stopPropagation();
-        moved = false;
+        drag.moved = false;
       }
     }, true);
 

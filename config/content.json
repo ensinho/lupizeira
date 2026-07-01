@@ -1,250 +1,323 @@
 {
   "meta": {
-    "title": "Lupizeira Tattoo | Tatuagem Autoral em Fortaleza",
-    "description": "Lupizeira — tatuagem autoral com traço fino, sombras suaves e estética delicada. Fine line, floral, blackwork delicado, anime e pet tattoo no estúdio GE Souza Tattoo, Aldeota, Fortaleza-CE.",
+    "title": {
+      "pt": "Lupizeira Tattoo | Tatuagem Autoral em Fortaleza",
+      "en": "Lupizeira Tattoo | Original Tattoo Art in Fortaleza"
+    },
+    "description": {
+      "pt": "Lupizeira — tatuagem autoral com traço fino, sombras suaves e estética delicada. Fine line, floral, blackwork delicado, anime e pet tattoo no estúdio GE Souza Tattoo, Aldeota, Fortaleza-CE.",
+      "en": "Lupizeira — original tattoo art with fine lines, soft shading and a delicate aesthetic. Fine line, floral, delicate blackwork, anime and pet tattoos at GE Souza Tattoo studio, Aldeota, Fortaleza-CE."
+    },
     "author": "Lupizeira",
     "lang": "pt-BR",
     "ogImage": "assets/Icons/LupiProfileIcon.jpg"
   },
+  "ui": {
+    "readMore": { "pt": "Ler mais", "en": "Read more" },
+    "readLess": { "pt": "Ler menos", "en": "Read less" },
+    "backToTop": { "pt": "Voltar ao topo", "en": "Back to top" }
+  },
   "nav": {
     "logo": "Lupizeira",
     "links": [
-      { "label": "Sobre", "href": "#about" },
-      { "label": "Freehand", "href": "#freehand" },
-      { "label": "Portfólio", "href": "#portfolio" },
-      { "label": "Estúdio", "href": "#studio" },
-      { "label": "Depoimentos", "href": "#testimonials" }
+      { "label": { "pt": "Sobre", "en": "About" }, "href": "#about" },
+      { "label": { "pt": "Botânica", "en": "Botanical" }, "href": "#botanica" },
+      { "label": { "pt": "Freehand", "en": "Freehand" }, "href": "#freehand" },
+      { "label": { "pt": "Portfólio", "en": "Portfolio" }, "href": "#portfolio" },
+      { "label": { "pt": "Estúdio", "en": "Studio" }, "href": "#studio" },
+      { "label": { "pt": "Depoimentos", "en": "Reviews" }, "href": "#testimonials" }
     ],
-    "ctaLabel": "Agendar"
+    "ctaLabel": { "pt": "Agendar", "en": "Book" }
   },
   "hero": {
     "name": "Lupizeira",
-    "signature": "· tatuadora autoral ·",
-    "tagline": "Tatuagem autoral com traço fino, sombras suaves e identidade única.",
+    "eyebrow": {
+      "pt": "Tatuagem autoral · Fortaleza-CE",
+      "en": "Original tattoo art · Fortaleza-CE"
+    },
+    "signature": { "pt": "· tatuadora autoral ·", "en": "· original tattoo artist ·" },
+    "tagline": {
+      "pt": "Tatuagem autoral com traço fino, sombras suaves e identidade única.",
+      "en": "Original tattoo art with fine lines, soft shading and a unique identity."
+    },
     "avatar": "assets/Icons/LupiPFP3.jpeg",
-    "avatarAlt": "Lupizeira — Tatuadora autoral em Fortaleza",
-    "ctaPrimary": { "label": "Agendar sessão", "href": "https://wa.me/5585994212930?text=Oi%2C%20Lupi!%20Vim%20pelo%20seu%20site%20e%20queria%20conversar%20sobre%20uma%20tatuagem%20%3A%29" },
-    "ctaSecondary": { "label": "Ver no Instagram", "href": "https://instagram.com/lupizeira" },
-    "featuredEyebrow": "Em destaque",
+    "avatarAlt": {
+      "pt": "Lupizeira — Tatuadora autoral em Fortaleza",
+      "en": "Lupizeira — Original tattoo artist in Fortaleza"
+    },
+    "ctaPrimary": {
+      "label": { "pt": "Agendar sessão", "en": "Book a session" },
+      "href": "https://wa.me/5585994212930?text=Oi%2C%20Lupi!%20Vim%20pelo%20seu%20site%20e%20queria%20conversar%20sobre%20uma%20tatuagem%20%3A%29"
+    },
+    "ctaSecondary": {
+      "label": { "pt": "Ver no Instagram", "en": "See on Instagram" },
+      "href": "https://instagram.com/lupizeira"
+    },
+    "featuredEyebrow": { "pt": "Em destaque", "en": "Featured" },
     "featured": [
-      { "image": "assets/PostsTattoo/SelectedWork1.jpg", "alt": "Raposa em blackwork delicado com sombras suaves", "label": "Blackwork · Raposa" },
-      { "image": "assets/PostsTattoo/SelectedWork6.jpg", "alt": "Freehand sketch e tatuagem floral finalizada", "label": "Freehand" },
-      { "image": "assets/PostsTattoo/SelectedWork4.jpg", "alt": "Aves em fine line no braço", "label": "Aves" },
-      { "image": "assets/PostsTattoo/SelectedWork2.webp", "alt": "Floral fine line ornamental no ombro", "label": "Floral · Lírio" },
-      { "image": "assets/PostsTattoo/SelectedWork3.jpg", "alt": "Freehand sketch e tatuagem finalizada", "label": "Freehand" },
-      { "image": "assets/PostsTattoo/SelectedWork7.jpg", "alt": "Tatuagem autoral fine line", "label": "Fine Line" },
-      { "image": "assets/PostsTattoo/SelectedWork5.webp", "alt": "Composição floral delicada", "label": "Floral" },
-      { "image": "assets/PostsTattoo/SelectedWork8.webp", "alt": "Whip shading suave", "label": "Whip Shading" },
-      { "image": "assets/PostsTattoo/SelectedWork9.jpg", "alt": "Tatuagem simbólica autoral", "label": "Simbólica" },
-      { "image": "assets/PostsTattoo/SelectedWork10.webp", "alt": "Trabalho autoral em traço fino", "label": "Autoral" }
+      { "image": "assets/PostsTattoo/SelectedWork1.jpg", "alt": { "pt": "Raposa em blackwork delicado com sombras suaves", "en": "Fox in delicate blackwork with soft shading" }, "label": { "pt": "Blackwork · Raposa", "en": "Blackwork · Fox" } },
+      { "image": "assets/PostsTattoo/SelectedWork6.jpg", "alt": { "pt": "Freehand sketch e tatuagem floral finalizada", "en": "Freehand sketch and finished floral tattoo" }, "label": { "pt": "Freehand", "en": "Freehand" } },
+      { "image": "assets/PostsTattoo/SelectedWork4.jpg", "alt": { "pt": "Aves em fine line no braço", "en": "Birds in fine line on the arm" }, "label": { "pt": "Aves", "en": "Birds" } },
+      { "image": "assets/PostsTattoo/SelectedWork2.webp", "alt": { "pt": "Floral fine line ornamental no ombro", "en": "Ornamental fine line floral on the shoulder" }, "label": { "pt": "Floral · Lírio", "en": "Floral · Lily" } },
+      { "image": "assets/PostsTattoo/SelectedWork3.jpg", "alt": { "pt": "Freehand sketch e tatuagem finalizada", "en": "Freehand sketch and finished tattoo" }, "label": { "pt": "Freehand", "en": "Freehand" } },
+      { "image": "assets/PostsTattoo/SelectedWork7.jpg", "alt": { "pt": "Tatuagem autoral fine line", "en": "Original fine line tattoo" }, "label": { "pt": "Fine Line", "en": "Fine Line" } },
+      { "image": "assets/PostsTattoo/SelectedWork5.webp", "alt": { "pt": "Retrato de pet em fine line — cachorro Pepper", "en": "Fine line pet portrait — the dog Pepper" }, "label": { "pt": "Pet · Pepper", "en": "Pet · Pepper" } },
+      { "image": "assets/PostsTattoo/SelectedWork8.webp", "alt": { "pt": "Whip shading suave", "en": "Soft whip shading" }, "label": { "pt": "Whip Shading", "en": "Whip Shading" } },
+      { "image": "assets/PostsTattoo/SelectedWork9.jpg", "alt": { "pt": "Tatuagem simbólica autoral", "en": "Original symbolic tattoo" }, "label": { "pt": "Simbólica", "en": "Symbolic" } },
+      { "image": "assets/PostsTattoo/SelectedWork10.webp", "alt": { "pt": "Trabalho autoral em traço fino", "en": "Original fine line work" }, "label": { "pt": "Autoral", "en": "Original" } }
     ]
   },
   "about": {
-    "title": "Sobre a artista",
-    "lead": "Tatuagens delicadas, mas fortes. Com presenca e destaque.",
+    "title": { "pt": "Sobre a artista", "en": "About the artist" },
+    "eyebrow": { "pt": "A artista", "en": "The artist" },
+    "lead": {
+      "pt": "Tatuagens delicadas, mas fortes. Com presença e destaque.",
+      "en": "Delicate tattoos, but bold. With presence and impact."
+    },
     "paragraphs": [
-      "Meu trabalho e autentico. Em mais de <strong class=\"about-stat\">7 anos</strong> tatuando, eu faco questao de criar uma arte nova pra voce — seja uma ideia mais simples e minimalista ou um projeto maior, ate fechamento — sempre pensando no encaixe anatomico, pra que a tatuagem valorize o seu corpo.",
-      "Um dos meus diferenciais e o freehand. Eu crio a arte direto na sua pele com caneta, estudando a estrutura e o encaixe no seu corpo antes de tatuar. Isso traz mais movimento, liberdade e naturalidade pra cada trabalho.",
-      "Aqui, a tatuagem e feita na base da confianca. Eu preciso que voce me de liberdade artistica e confie no que vai ficar bom pra voce. E assim que eu consigo pegar a sua essencia e transformar em arte.",
-      "Eu nao vejo a tatuagem como algo do momento, mas como algo pra sempre. Entao pra que pressa, se vai ser pra sempre? Eu separo um dia inteiro pra te atender, pra pensar com calma em cada detalhe.",
-      "Bem-vindo ao meu mundo. A tatuagem e liberdade, expressao e significado — mas tambem e estetica, personalidade e vida.",
-      "Toda ideia e bem-vinda. Mas em todas, voce vai ver o meu toque."
+      {
+        "pt": "Oi, eu sou a Lu! Sou tatuadora em Fortaleza, especializada em Botânica, Blackwork, Fine Line e tattoos de pets. Todos os meus trabalhos carregam o acabamento da minha técnica de <strong class=\"about-stat\">whip shading</strong>, na qual me especializei ao longo dos anos para criar sombras suaves, leves e fluidas.",
+        "en": "Hi, I'm Lu! I'm a tattoo artist in Fortaleza, specialized in Botanical, Blackwork, Fine Line and pet tattoos. Every piece carries the finish of my <strong class=\"about-stat\">whip shading</strong> technique, which I've refined over the years to create soft, light and flowing shading."
+      },
+      {
+        "pt": "Estudo botânica e anatomia humana com foco e dedicação, porque acredito que uma tatuagem, além de única para cada cliente, precisa conversar com a anatomia e o movimento natural de cada corpo.",
+        "en": "I study botany and human anatomy with focus and dedication, because I believe a tattoo — beyond being unique to each client — needs to speak to the anatomy and natural movement of each body."
+      },
+      {
+        "pt": "Combinando técnica, sensibilidade e estudo anatômico, desenvolvo artes exclusivas e atemporais, pensadas para valorizar a estética, o fluxo e a composição de cada peça.",
+        "en": "Combining technique, sensitivity and anatomical study, I develop exclusive, timeless art, designed to enhance the aesthetics, flow and composition of every piece."
+      }
+    ],
+    "highlights": [
+      { "title": { "pt": "7 anos", "en": "7 years" }, "description": { "pt": "tatuando com técnica autoral", "en": "of original tattoo work" } },
+      { "title": { "pt": "Artista premiada", "en": "Award-winning" }, "description": { "pt": "reconhecida pelo trabalho autoral", "en": "recognized for her original work" } },
+      { "title": { "pt": "Whip shading", "en": "Whip shading" }, "description": { "pt": "sombras suaves e fluidas", "en": "soft, flowing shading" } }
     ],
     "signature": "- Lupizeira",
     "gallery": [
-      { "image": "assets/Icons/LupiPFP2.jpeg", "alt": "Retrato da Lupizeira", "role": "main" },
-      { "image": "assets/Icons/LupiImage4.jpeg", "alt": "Lupizeira em momento de bastidor", "role": "candid" },
-      { "image": "assets/BackgroundImages/StudioImage3.jpeg", "alt": "Lupizeira preparando a maca de tatuagem", "role": "studio" },
-      { "image": "assets/BackgroundImages/DogImage2.jpeg", "alt": "Os cachorros da Lupi descansando juntos", "role": "pet" }
+      { "image": "assets/Icons/LupiPFP2.jpeg", "alt": { "pt": "Retrato da Lupizeira", "en": "Portrait of Lupizeira" }, "role": "main" },
+      { "image": "assets/BackgroundImages/StudioImage3.jpeg", "alt": { "pt": "Lupizeira no estúdio", "en": "Lupizeira at the studio" }, "role": "studio" },
+      { "image": "assets/BackgroundImages/EstudioImage1.jpeg", "alt": { "pt": "Ambiente do estúdio GE Souza Tattoo", "en": "GE Souza Tattoo studio space" }, "role": "candid" },
+      { "image": "assets/BackgroundImages/EstudioImage2.jpeg", "alt": { "pt": "Recepção do estúdio", "en": "Studio reception" }, "role": "pet" }
+    ]
+  },
+  "botanica": {
+    "eyebrow": { "pt": "Especialidade", "en": "Specialty" },
+    "title": { "pt": "Botânica", "en": "Botanical" },
+    "description": {
+      "pt": "Especializada em botânica autoral, desenvolvo florais com traços delicados, mas marcantes, explorando contraste, textura e fluidez em cada composição. Meu trabalho é inteiramente desenhado por mim, criando peças únicas que respeitam o movimento natural do corpo através de um acabamento suave.",
+      "en": "Specialized in original botanical work, I create florals with delicate yet striking lines, exploring contrast, texture and flow in every composition. Every piece is entirely drawn by me — unique designs that respect the body's natural movement through a soft finish."
+    },
+    "items": [
+      { "image": "assets/Botanica/Botanica1.jpg", "alt": { "pt": "Floral botânico em fine line cobrindo a coxa", "en": "Botanical fine line floral covering the thigh" } },
+      { "image": "assets/Botanica/Botanica2.jpg", "alt": { "pt": "Peônia botânica no ombro — do desenho ao resultado final", "en": "Botanical peony on the shoulder — from sketch to final result" } },
+      { "image": "assets/PostsTattoo/SelectedWork2.webp", "alt": { "pt": "Lírio floral em fine line no ombro", "en": "Floral lily in fine line on the shoulder" } },
+      { "image": "assets/PostsTattoo/SelectedWork6.jpg", "alt": { "pt": "Composição floral com beija-flor no braço", "en": "Floral composition with a hummingbird on the arm" } }
     ]
   },
   "freehand": {
-    "title": "Freehand",
-    "subtitle": "Do desenho na pele ao resultado final — cada peça nasce única, traçada à mão livre no momento.",
-    "eyebrow": "Processo autoral",
+    "title": { "pt": "Freehand", "en": "Freehand" },
+    "eyebrow": { "pt": "Processo autoral", "en": "Signature process" },
+    "subtitle": {
+      "pt": "Do desenho na pele ao resultado final — cada peça nasce única, traçada à mão livre no momento.",
+      "en": "From the drawing on the skin to the final result — each piece is born unique, traced freehand in the moment."
+    },
+    "description": {
+      "pt": "Freehand é uma técnica onde a arte é criada diretamente no corpo, respeitando a anatomia, o movimento e o encaixe de cada pessoa. Um processo mais artístico e intuitivo, resultando em composições únicas e autorais.",
+      "en": "Freehand is a technique where the art is created directly on the body, respecting each person's anatomy, movement and fit. A more artistic, intuitive process that results in unique, original compositions."
+    },
     "pairs": [
       {
-        "label": "",
-        "sketch":  { "image": "assets/FreeHand/FreeHand2.0.jpeg", "alt": "Sketch freehand de água-viva traçado na pele em roxo" },
-        "final":   { "image": "assets/FreeHand/FreeHand2.1.jpeg", "alt": "Tatuagem finalizada de água-viva em blackwork delicado" }
+        "label": { "pt": "", "en": "" },
+        "sketch": { "image": "assets/FreeHand/FreeHand2.0.jpeg", "alt": { "pt": "Sketch freehand de água-viva traçado na pele em roxo", "en": "Freehand jellyfish sketch drawn on the skin in purple" } },
+        "final": { "image": "assets/FreeHand/FreeHand2.1.jpeg", "alt": { "pt": "Tatuagem finalizada de água-viva em blackwork delicado", "en": "Finished jellyfish tattoo in delicate blackwork" } }
       },
       {
-        "label": "",
-        "sketch":  { "image": "assets/FreeHand/FreeHand1.0.jpeg", "alt": "Sketch freehand de lírio e elementos orgânicos na pele" },
-        "final":   { "image": "assets/FreeHand/FreeHand1.1.jpeg", "alt": "Tatuagem finalizada de lírio com elementos orgânicos no ombro" }
+        "label": { "pt": "", "en": "" },
+        "sketch": { "image": "assets/FreeHand/FreeHand1.0.jpeg", "alt": { "pt": "Sketch freehand de lírio e elementos orgânicos na pele", "en": "Freehand lily sketch with organic elements on the skin" } },
+        "final": { "image": "assets/FreeHand/FreeHand1.1.jpeg", "alt": { "pt": "Tatuagem finalizada de lírio com elementos orgânicos no ombro", "en": "Finished lily tattoo with organic elements on the shoulder" } }
       },
       {
-        "label": "",
-        "sketch":  { "image": "assets/FreeHand/Freehand3.0.jpeg", "alt": "Sketch freehand de composição floral traçado no braço" },
-        "final":   { "image": "assets/FreeHand/Freehand3.1.jpeg", "alt": "Tatuagem finalizada de composição floral no braço" }
+        "label": { "pt": "", "en": "" },
+        "sketch": { "image": "assets/FreeHand/Freehand3.0.jpeg", "alt": { "pt": "Sketch freehand de composição floral traçado no braço", "en": "Freehand floral composition sketch drawn on the arm" } },
+        "final": { "image": "assets/FreeHand/Freehand3.1.jpeg", "alt": { "pt": "Tatuagem finalizada de composição floral no braço", "en": "Finished floral composition tattoo on the arm" } }
       },
       {
-        "label": "",
-        "sketch":  { "image": "assets/FreeHand/Freehand4.0.jpeg", "alt": "Sketch freehand de dragão no antebraço" },
-        "final":   { "image": "assets/FreeHand/Freehand4.1.jpeg", "alt": "Tatuagem finalizada de dragão no antebraço em blackwork delicado" }
+        "label": { "pt": "", "en": "" },
+        "sketch": { "image": "assets/FreeHand/Freehand4.0.jpeg", "alt": { "pt": "Sketch freehand de dragão no antebraço", "en": "Freehand dragon sketch on the forearm" } },
+        "final": { "image": "assets/FreeHand/Freehand4.1.jpeg", "alt": { "pt": "Tatuagem finalizada de dragão no antebraço em blackwork delicado", "en": "Finished dragon tattoo on the forearm in delicate blackwork" } }
       }
     ]
   },
   "portfolio": {
     "title": "",
     "subtitle": "",
+    "eyebrow": { "pt": "Trabalhos", "en": "Work" },
     "dividerIcon": "assets/Icons/StarIconForPlaceHolder.jpg",
     "groups": [
       {
         "id": "gerais",
-        "title": "Trabalhos Gerais",
-        "description": "Uma seleção autoral atravessando estilos — fine line, blackwork, floral e freehand.",
+        "title": { "pt": "Trabalhos Gerais", "en": "General Work" },
+        "description": {
+          "pt": "Uma seleção autoral atravessando estilos — do fine line ao floral, com suas particularidades e histórias.",
+          "en": "An original selection spanning styles — from fine line to floral, each with its own details and story."
+        },
         "items": [
-          { "image": "assets/PostsTattoo/SelectedWork1.jpg", "alt": "Raposa em blackwork delicado", "category": "Trabalhos Gerais" },
-          { "image": "assets/PostsTattoo/SelectedWork2.webp", "alt": "Floral fine line ornamental", "category": "Trabalhos Gerais" },
-          { "image": "assets/PostsTattoo/SelectedWork3.jpg", "alt": "Freehand sketch finalizado", "category": "Trabalhos Gerais" },
-          { "image": "assets/PostsTattoo/SelectedWork4.jpg", "alt": "Aves em fine line", "category": "Trabalhos Gerais" },
-          { "image": "assets/PostsTattoo/SelectedWork5.webp", "alt": "Composição floral delicada", "category": "Trabalhos Gerais" },
-          { "image": "assets/PostsTattoo/SelectedWork10.webp", "alt": "Trabalho autoral em traço fino", "category": "Trabalhos Gerais" },
-          { "image": "assets/PostsTattoo/SelectedWork6.jpg", "alt": "Freehand floral", "category": "Trabalhos Gerais" },
-          { "image": "assets/PostsTattoo/SelectedWork7.jpg", "alt": "Tatuagem autoral fine line", "category": "Trabalhos Gerais" },
-          { "image": "assets/PostsTattoo/SelectedWork8.webp", "alt": "Whip shading suave", "category": "Trabalhos Gerais" },
-          { "image": "assets/PostsTattoo/SelectedWork9.jpg", "alt": "Tatuagem simbólica autoral", "category": "Trabalhos Gerais" }
+          { "image": "assets/PostsTattoo/SelectedWork1.jpg", "alt": { "pt": "Raposa em blackwork delicado", "en": "Fox in delicate blackwork" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
+          { "image": "assets/PostsTattoo/SelectedWork2.webp", "alt": { "pt": "Floral fine line ornamental", "en": "Ornamental fine line floral" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
+          { "image": "assets/PostsTattoo/SelectedWork3.jpg", "alt": { "pt": "Freehand sketch finalizado", "en": "Finished freehand sketch" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
+          { "image": "assets/PostsTattoo/SelectedWork4.jpg", "alt": { "pt": "Aves em fine line", "en": "Birds in fine line" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
+          { "image": "assets/PostsTattoo/SelectedWork5.webp", "alt": { "pt": "Retrato de pet em fine line — cachorro Pepper", "en": "Fine line pet portrait — the dog Pepper" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
+          { "image": "assets/PostsTattoo/SelectedWork10.webp", "alt": { "pt": "Trabalho autoral em traço fino", "en": "Original fine line work" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
+          { "image": "assets/PostsTattoo/SelectedWork6.jpg", "alt": { "pt": "Freehand floral", "en": "Floral freehand" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
+          { "image": "assets/PostsTattoo/SelectedWork7.jpg", "alt": { "pt": "Tatuagem autoral fine line", "en": "Original fine line tattoo" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
+          { "image": "assets/PostsTattoo/SelectedWork8.webp", "alt": { "pt": "Whip shading suave", "en": "Soft whip shading" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
+          { "image": "assets/PostsTattoo/SelectedWork9.jpg", "alt": { "pt": "Tatuagem simbólica autoral", "en": "Original symbolic tattoo" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } }
         ]
       },
       {
-        "id": "escritas",
-        "title": "Tatuagens Escritas",
-        "description": "Lettering autoral com traço fino e personalidade.",
+        "id": "minis-escritas",
+        "title": { "pt": "Minis & Escritas", "en": "Minis & Lettering" },
+        "description": {
+          "pt": "Personalizadas — traço fino e personalizado.",
+          "en": "Personalized — fine line, made just for you."
+        },
         "items": [
-          { "image": "assets/TatooArts/EscritasArts/Escrita1.jpg", "alt": "Tatuagem de escrita delicada", "category": "Tatuagens Escritas" },
-          { "image": "assets/TatooArts/EscritasArts/Escrita2.jpg", "alt": "Lettering autoral fine line", "category": "Tatuagens Escritas" },
-          { "image": "assets/TatooArts/EscritasArts/Escrita4.jpg", "alt": "Lettering delicado", "category": "Tatuagens Escritas" },
-          { "image": "assets/TatooArts/EscritasArts/Escrita5.jpg", "alt": "Escrita autoral fine line", "category": "Tatuagens Escritas" },
-          { "image": "assets/TatooArts/EscritasArts/Escrita7.jpg", "alt": "Lettering com whip shading", "category": "Tatuagens Escritas" }
-        ]
-      },
-      {
-        "id": "minimalistas",
-        "title": "Tatuagens Minimalistas",
-        "description": "Composições delicadas com traço fino e sombras suaves.",
-        "items": [
-          { "image": "assets/TatooArts/MinimalistArts/Minimalist1.jpg", "alt": "Tatuagem minimalista fine line", "category": "Minimalista" },
-          { "image": "assets/TatooArts/MinimalistArts/Minimalist2.jpg", "alt": "Tatuagem minimalista delicada", "category": "Minimalista" },
-          { "image": "assets/TatooArts/MinimalistArts/Minimalist3.jpg", "alt": "Fine line minimalista", "category": "Minimalista" },
-          { "image": "assets/TatooArts/MinimalistArts/Minimalist4.jpg", "alt": "Tatuagem minimalista orgânica", "category": "Minimalista" },
-          { "image": "assets/TatooArts/MinimalistArts/Minimalist5.jpg", "alt": "Minimalismo delicado", "category": "Minimalista" }
+          { "image": "assets/TatooArts/EscritasArts/Escrita1.jpg", "alt": { "pt": "Tatuagem de escrita delicada", "en": "Delicate lettering tattoo" }, "category": { "pt": "Minis & Escritas", "en": "Minis & Lettering" } },
+          { "image": "assets/TatooArts/EscritasArts/Escrita2.jpg", "alt": { "pt": "Lettering autoral fine line", "en": "Original fine line lettering" }, "category": { "pt": "Minis & Escritas", "en": "Minis & Lettering" } },
+          { "image": "assets/TatooArts/EscritasArts/Escrita4.jpg", "alt": { "pt": "Lettering delicado", "en": "Delicate lettering" }, "category": { "pt": "Minis & Escritas", "en": "Minis & Lettering" } },
+          { "image": "assets/TatooArts/EscritasArts/Escrita5.jpg", "alt": { "pt": "Escrita autoral fine line", "en": "Original fine line script" }, "category": { "pt": "Minis & Escritas", "en": "Minis & Lettering" } },
+          { "image": "assets/TatooArts/EscritasArts/Escrita7.jpg", "alt": { "pt": "Lettering com whip shading", "en": "Lettering with whip shading" }, "category": { "pt": "Minis & Escritas", "en": "Minis & Lettering" } },
+          { "image": "assets/TatooArts/MinimalistArts/Minimalist1.jpg", "alt": { "pt": "Tatuagem minimalista fine line", "en": "Minimalist fine line tattoo" }, "category": { "pt": "Minis & Escritas", "en": "Minis & Lettering" } },
+          { "image": "assets/TatooArts/MinimalistArts/Minimalist2.jpg", "alt": { "pt": "Tatuagem minimalista delicada", "en": "Delicate minimalist tattoo" }, "category": { "pt": "Minis & Escritas", "en": "Minis & Lettering" } },
+          { "image": "assets/TatooArts/MinimalistArts/Minimalist3.jpg", "alt": { "pt": "Fine line minimalista", "en": "Minimalist fine line" }, "category": { "pt": "Minis & Escritas", "en": "Minis & Lettering" } },
+          { "image": "assets/TatooArts/MinimalistArts/Minimalist4.jpg", "alt": { "pt": "Tatuagem minimalista orgânica", "en": "Organic minimalist tattoo" }, "category": { "pt": "Minis & Escritas", "en": "Minis & Lettering" } },
+          { "image": "assets/TatooArts/MinimalistArts/Minimalist5.jpg", "alt": { "pt": "Minimalismo delicado", "en": "Delicate minimalism" }, "category": { "pt": "Minis & Escritas", "en": "Minis & Lettering" } }
         ]
       }
     ]
   },
   "styles": {
-    "title": "Estilos & especialidades",
-    "subtitle": "Uma assinatura visual: delicada, orgânica e simbólica.",
+    "title": { "pt": "Estilos & especialidades", "en": "Styles & specialties" },
+    "subtitle": { "pt": "Uma assinatura visual: delicada, orgânica e simbólica.", "en": "A visual signature: delicate, organic and symbolic." },
     "items": [
-      "Fine Line",
-      "Tatuagens Escritas",
-      "Minimalista",
-      "Floral & Botânico",
-      "Blackwork Delicado",
-      "Anime",
-      "Pet Tattoo"
+      { "pt": "Fine Line", "en": "Fine Line" },
+      { "pt": "Tatuagens Escritas", "en": "Lettering" },
+      { "pt": "Minimalista", "en": "Minimalist" },
+      { "pt": "Floral & Botânico", "en": "Floral & Botanical" },
+      { "pt": "Blackwork Delicado", "en": "Delicate Blackwork" },
+      { "pt": "Anime", "en": "Anime" },
+      { "pt": "Pet Tattoo", "en": "Pet Tattoo" }
     ]
   },
   "studio": {
-    "title": "O estúdio",
+    "title": { "pt": "O estúdio", "en": "The studio" },
     "name": "GE Souza Tattoo",
     "website": "https://gesouzatattoo.com/",
     "websiteLabel": "gesouzatattoo.com",
     "location": "Aldeota, Fortaleza — CE",
     "address": "R. Monsenhor Bruno, 1153 — Sala 426",
-    "description": "Atendo no GE Souza Tattoo, estúdio especializado em tatuagem fine line, geométrica, floral e ornamental no coração da Aldeota. Ambiente reservado, materiais descartáveis e biossegurança rigorosa para que sua experiência seja confortável do briefing à cicatrização.",
+    "description": {
+      "pt": "Atendo no GE Souza Tattoo, estúdio especializado em tatuagem fine line, geométrica, floral e ornamental no coração da Aldeota. Ambiente reservado, materiais descartáveis e biossegurança rigorosa para que sua experiência seja confortável do briefing à cicatrização.",
+      "en": "I work at GE Souza Tattoo, a studio specialized in fine line, geometric, floral and ornamental tattoos in the heart of Aldeota. A private space, single-use materials and strict biosafety so your experience is comfortable from briefing to healing."
+    },
     "gallery": [
-      { "image": "assets/BackgroundImages/EstudioImage2.jpeg", "alt": "Recepção do estúdio GE Souza Tattoo, Aldeota Fortaleza" },
-      { "image": "assets/BackgroundImages/EstudioImage1.jpeg", "alt": "Sala de espera do estúdio GE Souza Tattoo" }
+      { "image": "assets/BackgroundImages/EstudioImage2.jpeg", "alt": { "pt": "Recepção do estúdio GE Souza Tattoo, Aldeota Fortaleza", "en": "Reception of GE Souza Tattoo studio, Aldeota Fortaleza" } },
+      { "image": "assets/BackgroundImages/EstudioImage1.jpeg", "alt": { "pt": "Sala de espera do estúdio GE Souza Tattoo", "en": "Waiting room of GE Souza Tattoo studio" } }
     ],
     "mapEmbed": "https://www.google.com/maps?q=R.+Monsenhor+Bruno,+1153+-+Aldeota,+Fortaleza+-+CE&output=embed"
   },
   "process": {
-    "title": "Como funciona",
-    "subtitle": "Um processo claro, do primeiro contato à cicatrização.",
+    "title": { "pt": "Como funciona", "en": "How it works" },
+    "eyebrow": { "pt": "Processo", "en": "Process" },
+    "subtitle": {
+      "pt": "Um processo claro, do primeiro contato à cicatrização.",
+      "en": "A clear process, from first contact to healing."
+    },
     "steps": [
-      { "number": "01", "title": "Conversa", "description": "Você me conta a ideia, referências, local do corpo e tamanho. Conversamos pelo WhatsApp." },
-      { "number": "02", "title": "Orçamento & data", "description": "Defino valor e proponho datas disponíveis. Reserva confirmada com sinal." },
-      { "number": "03", "title": "Desenho", "description": "Desenvolvo a arte autoral pensada para o seu corpo. Pequenos ajustes no dia." },
-      { "number": "04", "title": "Sessão", "description": "Atendimento no GE Souza Tattoo, em ambiente reservado e seguro." },
-      { "number": "05", "title": "Cicatrização", "description": "Acompanho os cuidados pós-tatuagem para um resultado duradouro." }
+      { "number": "01", "title": { "pt": "Conversa", "en": "Chat" }, "description": { "pt": "Você me conta a ideia, referências, local do corpo e tamanho. Conversamos pelo WhatsApp.", "en": "You tell me the idea, references, body placement and size. We chat on WhatsApp." } },
+      { "number": "02", "title": { "pt": "Orçamento & data", "en": "Quote & date" }, "description": { "pt": "Defino o valor e proponho datas disponíveis. A reserva é confirmada com sinal — atendimentos somente com agendamento.", "en": "I set the price and propose available dates. The booking is confirmed with a deposit — sessions by appointment only." } },
+      { "number": "03", "title": { "pt": "Desenho", "en": "Design" }, "description": { "pt": "A construção da arte acontece de forma personalizada para cada projeto, podendo ser desenhada previamente ou diretamente no corpo, no freehand.", "en": "The artwork is built individually for each project — drawn beforehand or directly on the body, freehand." } },
+      { "number": "04", "title": { "pt": "Sessão", "en": "Session" }, "description": { "pt": "Atendimento no GE Souza Tattoo, em ambiente reservado e seguro.", "en": "Your session at GE Souza Tattoo, in a private, safe space." } },
+      { "number": "05", "title": { "pt": "Cicatrização", "en": "Healing" }, "description": { "pt": "Envio todas as orientações de cuidados pós-tatuagem durante a cicatrização, garantindo uma recuperação saudável e a preservação da arte.", "en": "I send all aftercare guidance throughout healing, ensuring a healthy recovery and preserving the artwork." } }
     ]
   },
   "shop": {
-    "title": "Brushes para Procreate",
-    "subtitle": "Crie suas próprias artes com os pincéis que uso nas minhas tatuagens.",
+    "title": { "pt": "Brushes para Procreate", "en": "Procreate Brushes" },
+    "subtitle": { "pt": "Crie suas próprias artes com os pincéis que uso nas minhas tatuagens.", "en": "Create your own art with the brushes I use in my tattoos." },
     "product": {
-      "name": "Brushes Tattoo — Procreate",
-      "description": "Set completo de pincéis profissionais para tatuagem digital. Fine line, sombreamento, whip shading e muito mais.",
+      "name": { "pt": "Brushes Tattoo — Procreate", "en": "Tattoo Brushes — Procreate" },
+      "description": { "pt": "Set completo de pincéis profissionais para tatuagem digital. Fine line, sombreamento, whip shading e muito mais.", "en": "Complete set of professional brushes for digital tattooing. Fine line, shading, whip shading and much more." },
       "image": "assets/Icons/StarIconForPlaceHolder.jpg",
-      "cta": { "label": "Comprar agora", "href": "https://pay.kiwify.com.br/x0z1qUu" }
+      "cta": { "label": { "pt": "Comprar agora", "en": "Buy now" }, "href": "https://pay.kiwify.com.br/x0z1qUu" }
     }
   },
   "testimonials": {
-    "title": "Feedbacks",
-    "subtitle": "Mensagens reais de quem já tatuou comigo.",
-    "featuredQuote": "Obrigada por transmitir em arte o que não conseguimos explicar em palavras.",
-    "featuredAuthor": "@lupizeira’s fãs — família que tatuou junto",
+    "title": { "pt": "Feedbacks", "en": "Reviews" },
+    "eyebrow": { "pt": "Feedbacks", "en": "Reviews" },
+    "subtitle": { "pt": "Mensagens reais de quem já tatuou comigo.", "en": "Real messages from people I've tattooed." },
+    "featuredQuote": {
+      "pt": "Obrigada por transmitir em arte o que não cabe em palavras.",
+      "en": "Thank you for turning into art what doesn't fit into words."
+    },
+    "featuredAuthor": {
+      "pt": "@lupizeira’s fãs — família que tatuou junto",
+      "en": "@lupizeira's fans — the family that tattooed together"
+    },
     "items": [
       {
         "author": "@carlospmx",
-        "text": "Amei fazer minha primeira tattoo com você!!! Trabalho incrível 🔥",
-        "image": "assets/TatooArts/Feedbacks/Feedback1.jpg",
-        "alt": "Depoimento de @carlospmx"
+        "text": { "pt": "Amei fazer minha primeira tattoo com você!!! Trabalho incrível 🔥", "en": "Loved getting my first tattoo with you!!! Incredible work 🔥" }
       },
       {
-        "author": "Cliente — Aldeota",
-        "text": "Aaaa Luana, tô simplesmente apaixonada! Tô até agora encarando a mão aqui sem superar o traço que tu fez 😭 Muito obrigada pelo cuidado e, principalmente, pela abertura que você me deu quando falou que se tivesse algum detalhe que eu quisesse mudar eu falasse, que a gente mudava quantas vezes fosse necessário. Isso foi extremamente importante pra mim! Já tive experiência com tatuador que me tratou com má vontade, e isso até hoje me deixa receosa quando vou fazer orçamento com alguém novo. Então muito obrigada por esse acolhimento que com certeza fez uma diferença enorme no momento da tatuagem. Com certeza irei planejar outras com você ❤️",
-        "image": "assets/TatooArts/Feedbacks/Feedback2.jpg",
-        "alt": "Depoimento sobre acolhimento e traço"
+        "author": { "pt": "Cliente — Aldeota", "en": "Client — Aldeota" },
+        "text": {
+          "pt": "Aaaa Luana, tô simplesmente apaixonada! Tô até agora encarando a mão aqui sem superar o traço que tu fez 😭 Muito obrigada pelo cuidado e, principalmente, pela abertura que você me deu quando falou que se tivesse algum detalhe que eu quisesse mudar eu falasse, que a gente mudava quantas vezes fosse necessário. Isso foi extremamente importante pra mim! Já tive experiência com tatuador que me tratou com má vontade, e isso até hoje me deixa receosa quando vou fazer orçamento com alguém novo. Então muito obrigada por esse acolhimento que com certeza fez uma diferença enorme no momento da tatuagem. Com certeza irei planejar outras com você ❤️",
+          "en": "Aaah Luana, I'm simply in love! I'm still staring at my hand, not over the linework you did 😭 Thank you so much for the care and, above all, for the openness you gave me when you said that if there was any detail I wanted to change, I should say so and we'd change it as many times as needed. That was extremely important to me! I've had an experience with a tattoo artist who treated me with reluctance, and to this day that makes me anxious when getting a quote from someone new. So thank you so much for that warmth, which definitely made a huge difference during the tattoo. I'll absolutely be planning more with you ❤️"
+        }
       },
       {
         "author": "@dantas_photo",
-        "text": "👏👏👏 Além do teu trabalho incrível, seu ótimo tratamento com o cliente é um diferencial gigante.",
-        "image": "assets/TatooArts/Feedbacks/Feedback3.jpg",
-        "alt": "Depoimento de @dantas_photo"
+        "text": { "pt": "👏👏👏 Além do teu trabalho incrível, seu ótimo tratamento com o cliente é um diferencial gigante.", "en": "👏👏👏 Beyond your incredible work, the way you treat your clients is a huge difference." }
       },
       {
-        "author": "Cliente — mão",
-        "text": "Eu amei demaissss 🥺🥺🥺 Obrigada, Luuu! Ficou perfeito 🫶",
-        "image": "assets/TatooArts/Feedbacks/Feedback4.jpg",
-        "alt": "Depoimento sobre tatuagem na mão"
+        "author": { "pt": "Cliente — mão", "en": "Client — hand" },
+        "text": { "pt": "Eu amei demaissss 🥺🥺🥺 Obrigada, Luuu! Ficou perfeito 🫶", "en": "I loved it sooo much 🥺🥺🥺 Thank you, Luuu! It turned out perfect 🫶" }
       },
       {
-        "author": "Cliente — braço",
-        "text": "Muito muito perfeito! Eu sei o quanto é importante pra mim! ❤️",
-        "image": "assets/TatooArts/Feedbacks/Feedback5.jpg",
-        "alt": "Depoimento sobre tatuagem afetiva"
+        "author": { "pt": "Cliente — braço", "en": "Client — arm" },
+        "text": { "pt": "Muito muito perfeito! Eu sei o quanto é importante pra mim! ❤️", "en": "So, so perfect! I know how much it means to me! ❤️" }
       },
       {
-        "author": "Cliente — Fortaleza",
-        "text": "Oi amg, ontem foi corrido demais na saída e hoje durante o dia também, mas tô parando agora pra te agradecer pelo trabalho INCRÍVEL que você fez! Não me arrependo de ter ficado em Fortaleza pra gente fazer essa tattoo. Muito muito obrigada mesmo! E pela troca de energia maravilhosa de sempre! Gosto de ti de graça e a cada dia admiro ainda mais teu trabalho! Obrigada de verdade pelo dia de ontem ❤️❤️",
-        "image": "assets/TatooArts/Feedbacks/Feedback6.webp",
-        "alt": "Depoimento sobre tatuagem de leopardo"
+        "author": { "pt": "Cliente — Fortaleza", "en": "Client — Fortaleza" },
+        "text": {
+          "pt": "Oi amg, ontem foi corrido demais na saída e hoje durante o dia também, mas tô parando agora pra te agradecer pelo trabalho INCRÍVEL que você fez! Não me arrependo de ter ficado em Fortaleza pra gente fazer essa tattoo. Muito muito obrigada mesmo! E pela troca de energia maravilhosa de sempre! Gosto de ti de graça e a cada dia admiro ainda mais teu trabalho! Obrigada de verdade pelo dia de ontem ❤️❤️",
+          "en": "Hey friend, yesterday was way too rushed on the way out and today during the day too, but I'm stopping now to thank you for the INCREDIBLE work you did! I don't regret staying in Fortaleza so we could do this tattoo. Thank you so, so much! And for the wonderful energy exchange as always! I admire your work more every single day! Truly thank you for yesterday ❤️❤️"
+        }
       },
       {
-        "author": "Família — 5 tatuagens",
-        "text": "(eu estou sem palavras) Um agradecimento especial à Lu, que não apenas replicou a mesma arte em 5 corpos e locais diferentes, mas que ouviu nossa história com muito amor e cuidou de nós com muito carinho. Foi um dia inteiro nessa missão e você tornou tudo muito leve. Obrigada por transmitir em arte o que não conseguimos explicar em palavras e eternizar em nós muito do que nos define como família! ❤️ Somos seus fãs, @lupizeira!",
-        "image": "assets/TatooArts/Feedbacks/Feedback7.webp",
-        "alt": "Depoimento de família com 5 tatuagens iguais"
+        "author": { "pt": "Família — 5 tatuagens", "en": "Family — 5 tattoos" },
+        "text": {
+          "pt": "(eu estou sem palavras) Um agradecimento especial à Lu, que não apenas replicou a mesma arte em 5 corpos e locais diferentes, mas que ouviu nossa história com muito amor e cuidou de nós com muito carinho. Foi um dia inteiro nessa missão e você tornou tudo muito leve. Obrigada por transmitir em arte o que não conseguimos explicar em palavras e eternizar em nós muito do que nos define como família! ❤️ Somos seus fãs, @lupizeira!",
+          "en": "(I'm speechless) A special thank you to Lu, who not only replicated the same art on 5 different bodies and placements, but who listened to our story with so much love and cared for us so tenderly. It was a whole day on this mission and you made everything feel light. Thank you for turning into art what we couldn't explain in words and for eternalizing in us so much of what defines us as a family! ❤️ We're your fans, @lupizeira!"
+        }
       }
     ]
   },
   "cta": {
-    "title": "Vamos criar a sua próxima tatuagem?",
-    "subtitle": "Atendo por agendamento. Me conta sua ideia pelo WhatsApp.",
-    "primary": { "label": "Agendar pelo WhatsApp", "href": "https://wa.me/5585994212930?text=Oi%2C%20Lupi!%20Vim%20pelo%20seu%20site%20e%20queria%20conversar%20sobre%20uma%20tatuagem%20%3A%29" },
-    "secondary": { "label": "Ver mais no Instagram", "href": "https://instagram.com/lupizeira" }
+    "title": { "pt": "Vamos criar a sua próxima tatuagem?", "en": "Shall we create your next tattoo?" },
+    "subtitle": { "pt": "Atendo por agendamento. Me conta sua ideia pelo WhatsApp.", "en": "By appointment only. Tell me your idea on WhatsApp." },
+    "primary": { "label": { "pt": "Agendar pelo WhatsApp", "en": "Book on WhatsApp" }, "href": "https://wa.me/5585994212930?text=Oi%2C%20Lupi!%20Vim%20pelo%20seu%20site%20e%20queria%20conversar%20sobre%20uma%20tatuagem%20%3A%29" },
+    "secondary": { "label": { "pt": "Ver mais no Instagram", "en": "See more on Instagram" }, "href": "https://instagram.com/lupizeira" }
   },
   "location": {
     "city": "Fortaleza",
-    "region": "Ceará, Brasil",
+    "region": { "pt": "Ceará, Brasil", "en": "Ceará, Brazil" },
     "timezone": "GMT-3",
-    "availability": "Aceitando agendamentos"
+    "availability": { "pt": "Aceitando agendamentos", "en": "Booking open" }
   },
   "social": {
-    "title": "Onde me encontrar",
+    "title": { "pt": "Onde me encontrar", "en": "Where to find me" },
     "links": [
       { "platform": "Instagram", "url": "https://instagram.com/lupizeira", "icon": "instagram" },
       { "platform": "TikTok", "url": "https://www.tiktok.com/@lupizeira", "icon": "tiktok" },
@@ -253,12 +326,12 @@
     ]
   },
   "floatingCta": {
-    "label": "Agendar no WhatsApp",
+    "label": { "pt": "Agendar no WhatsApp", "en": "Book on WhatsApp" },
     "href": "https://wa.me/5585994212930?text=Oi%2C%20Lupi!%20Vim%20pelo%20seu%20site%20e%20queria%20conversar%20sobre%20uma%20tatuagem%20%3A%29",
     "icon": "whatsapp"
   },
   "footer": {
-    "copyright": "© 2026 Lupizeira. Todos os direitos reservados.",
-    "builtWith": "Tatuagens autorais • Fortaleza-CE"
+    "copyright": { "pt": "© 2026 Lupizeira. Todos os direitos reservados.", "en": "© 2026 Lupizeira. All rights reserved." },
+    "builtWith": { "pt": "Tatuagens autorais • Fortaleza-CE", "en": "Original tattoos • Fortaleza-CE" }
   }
 }
