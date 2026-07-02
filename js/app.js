@@ -492,30 +492,43 @@ class LupizeiraApp {
     const el = document.getElementById('freehand');
     if (!el) return;
     const f = this.content.freehand;
-    if (!f || !Array.isArray(f.pairs) || f.pairs.length === 0) {
+    const items = Array.isArray(f?.items) ? f.items : (Array.isArray(f?.pairs) ? f.pairs : []);
+    if (!f || items.length === 0) {
       el.hidden = true;
       return;
     }
+    el.hidden = false;
     this._freehandFlat = [];
-    const pairsHtml = f.pairs.map((pair) => {
-      const sketchIndex = this._freehandFlat.length;
-      this._freehandFlat.push({ ...pair.sketch, category: `${pair.label} · sketch` });
-      const finalIndex = this._freehandFlat.length;
-      this._freehandFlat.push({ ...pair.final, category: `${pair.label} · final` });
-      return `
-        <article class="freehand-pair reveal">
-          <div class="freehand-pair-media">
-            <button type="button" class="freehand-item" data-findex="${sketchIndex}" aria-label="Ampliar sketch — ${escapeHtml(pair.label)}">
-              <img src="${escapeHtml(pair.sketch.image)}" alt="${escapeHtml(pair.sketch.alt)}" loading="lazy" decoding="async" />
+    const itemsHtml = items.map((item) => {
+      // Single combined image (color sketch + B&W final already in one photo)
+      if (item.single) {
+        const idx = this._freehandFlat.length;
+        this._freehandFlat.push({ ...item.single, category: 'Sketch → Final', color: true });
+        return `
+          <article class="freehand-tile freehand-tile--single reveal">
+            <button type="button" class="freehand-item freehand-item--single" data-findex="${idx}" aria-label="Ampliar ${escapeHtml(item.single.alt)}">
+              <img src="${escapeHtml(item.single.image)}" alt="${escapeHtml(item.single.alt)}" loading="lazy" decoding="async" />
               <span class="freehand-tag">Sketch</span>
-            </button>
-            <span class="freehand-arrow" aria-hidden="true">→</span>
-            <button type="button" class="freehand-item" data-findex="${finalIndex}" aria-label="Ampliar resultado final — ${escapeHtml(pair.label)}">
-              <img src="${escapeHtml(pair.final.image)}" alt="${escapeHtml(pair.final.alt)}" loading="lazy" decoding="async" />
               <span class="freehand-tag freehand-tag--final">Final</span>
             </button>
-          </div>
-          ${pair.label ? `<p class="freehand-pair-label">${escapeHtml(pair.label)}</p>` : ''}
+          </article>
+        `;
+      }
+      // Sketch (color) | Final (B&W) diptych tile
+      const sketchIndex = this._freehandFlat.length;
+      this._freehandFlat.push({ ...item.sketch, category: 'Sketch', color: true });
+      const finalIndex = this._freehandFlat.length;
+      this._freehandFlat.push({ ...item.final, category: 'Final' });
+      return `
+        <article class="freehand-tile freehand-tile--pair reveal">
+          <button type="button" class="freehand-item freehand-half freehand-half--sketch" data-findex="${sketchIndex}" aria-label="Ampliar sketch">
+            <img src="${escapeHtml(item.sketch.image)}" alt="${escapeHtml(item.sketch.alt)}" loading="lazy" decoding="async" />
+            <span class="freehand-tag">Sketch</span>
+          </button>
+          <button type="button" class="freehand-item freehand-half freehand-half--final" data-findex="${finalIndex}" aria-label="Ampliar resultado final">
+            <img src="${escapeHtml(item.final.image)}" alt="${escapeHtml(item.final.alt)}" loading="lazy" decoding="async" />
+            <span class="freehand-tag freehand-tag--final">Final</span>
+          </button>
         </article>
       `;
     }).join('');
@@ -529,7 +542,7 @@ class LupizeiraApp {
           ${f.subtitle ? `<p class="section-subtitle">${escapeHtml(f.subtitle)}</p>` : ''}
         </div>
         ${f.description ? `<p class="freehand-description reveal">${escapeHtml(f.description)}</p>` : ''}
-        <div class="freehand-grid">${pairsHtml}</div>
+        <div class="freehand-grid">${itemsHtml}</div>
       </div>
     `;
   }
@@ -870,6 +883,7 @@ class LupizeiraApp {
       if (!item) return;
       img.src = item.image;
       img.alt = item.alt ?? '';
+      img.classList.toggle('lightbox-image--color', !!item.color);
       const label = item.category ?? item.author ?? '';
       caption.textContent = label ? `${label} · ${index + 1} / ${items.length}` : `${index + 1} / ${items.length}`;
     };

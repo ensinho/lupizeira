@@ -146,7 +146,7 @@
     },
     "items": [
       { "image": "assets/Botanica/Botanica1.jpg", "alt": { "pt": "Floral botânico em fine line cobrindo a coxa", "en": "Botanical fine line floral covering the thigh" } },
-      { "image": "assets/Botanica/Botanica2.jpg", "alt": { "pt": "Peônia botânica no ombro — do desenho ao resultado final", "en": "Botanical peony on the shoulder — from sketch to final result" } },
+      { "image": "assets/FreeHand/Freehand3.1.jpeg", "alt": { "pt": "Lírio botânico finalizado no braço", "en": "Finished botanical lily on the arm" } },
       { "image": "assets/PostsTattoo/SelectedWork2.webp", "alt": { "pt": "Lírio floral em fine line no ombro", "en": "Floral lily in fine line on the shoulder" } },
       { "image": "assets/PostsTattoo/SelectedWork6.jpg", "alt": { "pt": "Composição floral com beija-flor no braço", "en": "Floral composition with a hummingbird on the arm" } }
     ]
@@ -154,35 +154,23 @@
   "freehand": {
     "title": { "pt": "Freehand", "en": "Freehand" },
     "eyebrow": { "pt": "Processo autoral", "en": "Signature process" },
-    "subtitle": {
-      "pt": "Do desenho na pele ao resultado final — cada peça nasce única, traçada à mão livre no momento.",
-      "en": "From the drawing on the skin to the final result — each piece is born unique, traced freehand in the moment."
-    },
     "description": {
       "pt": "Freehand é uma técnica onde a arte é criada diretamente no corpo, respeitando a anatomia, o movimento e o encaixe de cada pessoa. Um processo mais artístico e intuitivo, resultando em composições únicas e autorais.",
       "en": "Freehand is a technique where the art is created directly on the body, respecting each person's anatomy, movement and fit. A more artistic, intuitive process that results in unique, original compositions."
     },
-    "pairs": [
+    "items": [
       {
-        "label": { "pt": "", "en": "" },
-        "sketch": { "image": "assets/FreeHand/FreeHand2.0.jpeg", "alt": { "pt": "Sketch freehand de água-viva traçado na pele em roxo", "en": "Freehand jellyfish sketch drawn on the skin in purple" } },
-        "final": { "image": "assets/FreeHand/FreeHand2.1.jpeg", "alt": { "pt": "Tatuagem finalizada de água-viva em blackwork delicado", "en": "Finished jellyfish tattoo in delicate blackwork" } }
+        "sketch": { "image": "assets/FreeHand/freeHand_nova01.JPG", "alt": { "pt": "Sketch freehand de lírio em roxo no ombro", "en": "Freehand lily sketch in purple on the shoulder" } },
+        "final": { "image": "assets/FreeHand/freeHand_nova02.JPG", "alt": { "pt": "Tatuagem finalizada de lírio fine line no ombro", "en": "Finished fine line lily tattoo on the shoulder" } }
       },
       {
-        "label": { "pt": "", "en": "" },
-        "sketch": { "image": "assets/FreeHand/FreeHand1.0.jpeg", "alt": { "pt": "Sketch freehand de lírio e elementos orgânicos na pele", "en": "Freehand lily sketch with organic elements on the skin" } },
-        "final": { "image": "assets/FreeHand/FreeHand1.1.jpeg", "alt": { "pt": "Tatuagem finalizada de lírio com elementos orgânicos no ombro", "en": "Finished lily tattoo with organic elements on the shoulder" } }
+        "sketch": { "image": "assets/FreeHand/freeHand_nova21.JPG", "alt": { "pt": "Sketch freehand de cauda de sereia na perna", "en": "Freehand mermaid tail sketch on the leg" } },
+        "final": { "image": "assets/FreeHand/freeHand_nova22.JPG", "alt": { "pt": "Tatuagem finalizada de cauda de sereia na perna", "en": "Finished mermaid tail tattoo on the leg" } }
       },
-      {
-        "label": { "pt": "", "en": "" },
-        "sketch": { "image": "assets/FreeHand/Freehand3.0.jpeg", "alt": { "pt": "Sketch freehand de composição floral traçado no braço", "en": "Freehand floral composition sketch drawn on the arm" } },
-        "final": { "image": "assets/FreeHand/Freehand3.1.jpeg", "alt": { "pt": "Tatuagem finalizada de composição floral no braço", "en": "Finished floral composition tattoo on the arm" } }
-      },
-      {
-        "label": { "pt": "", "en": "" },
-        "sketch": { "image": "assets/FreeHand/Freehand4.0.jpeg", "alt": { "pt": "Sketch freehand de dragão no antebraço", "en": "Freehand dragon sketch on the forearm" } },
-        "final": { "image": "assets/FreeHand/Freehand4.1.jpeg", "alt": { "pt": "Tatuagem finalizada de dragão no antebraço em blackwork delicado", "en": "Finished dragon tattoo on the forearm in delicate blackwork" } }
-      }
+      { "single": { "image": "assets/PostsTattoo/SelectedWork3.jpg", "alt": { "pt": "Água-viva freehand — do sketch em cor ao resultado final", "en": "Freehand jellyfish — from the color sketch to the final result" } } },
+      { "single": { "image": "assets/FreeHand/freeHand_atipica.JPG", "alt": { "pt": "Peônia freehand — do sketch em cor ao resultado final no ombro", "en": "Freehand peony — from the color sketch to the final on the shoulder" } } },
+      { "single": { "image": "assets/FreeHand/freeHand_atipica2.JPG", "alt": { "pt": "Lírios freehand — do sketch em cor ao resultado final no braço", "en": "Freehand lilies — from the color sketch to the final on the arm" } } },
+      { "single": { "image": "assets/FreeHand/freeHand_atupica3.JPG", "alt": { "pt": "Peônia freehand com abelha — do sketch em cor ao resultado final na perna", "en": "Freehand peony with a bee — from the color sketch to the final on the leg" } } }
     ]
   },
   "portfolio": {
