@@ -20,11 +20,11 @@
   "nav": {
     "logo": "Lupizeira",
     "links": [
-      { "label": { "pt": "Sobre", "en": "About" }, "href": "#about" },
       { "label": { "pt": "Botânica", "en": "Botanical" }, "href": "#botanica" },
       { "label": { "pt": "Freehand", "en": "Freehand" }, "href": "#freehand" },
       { "label": { "pt": "Portfólio", "en": "Portfolio" }, "href": "#portfolio" },
       { "label": { "pt": "Estúdio", "en": "Studio" }, "href": "#studio" },
+      { "label": { "pt": "Sobre", "en": "About" }, "href": "#about" },
       { "label": { "pt": "Depoimentos", "en": "Reviews" }, "href": "#testimonials" }
     ],
     "ctaLabel": { "pt": "Agendar", "en": "Book" }
@@ -131,10 +131,7 @@
     ],
     "signature": "- Lupizeira",
     "gallery": [
-      { "image": "assets/Icons/LupiPFP2.jpeg", "alt": { "pt": "Retrato da Lupizeira", "en": "Portrait of Lupizeira" }, "role": "main" },
-      { "image": "assets/BackgroundImages/StudioImage3.jpeg", "alt": { "pt": "Lupizeira no estúdio", "en": "Lupizeira at the studio" }, "role": "studio" },
-      { "image": "assets/BackgroundImages/EstudioImage1.jpeg", "alt": { "pt": "Ambiente do estúdio GE Souza Tattoo", "en": "GE Souza Tattoo studio space" }, "role": "candid" },
-      { "image": "assets/BackgroundImages/EstudioImage2.jpeg", "alt": { "pt": "Recepção do estúdio", "en": "Studio reception" }, "role": "pet" }
+      { "image": "assets/Icons/LupiPFP2.jpeg", "alt": { "pt": "Retrato da Lupizeira", "en": "Portrait of Lupizeira" }, "role": "main" }
     ]
   },
   "botanica": {

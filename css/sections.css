@@ -541,6 +541,32 @@ body.has-announcement .nav { top: var(--ann-h); }
   display: block;
   filter: grayscale(1);
 }
+/* Single professional photo (Sobre a artista) */
+.about-photo {
+  margin: 0;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  background-color: var(--color-surface);
+}
+.about-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(1);
+  transition: transform var(--transition-slow);
+}
+.about-photo:hover img { transform: scale(1.03); }
+@media (max-width: 900px) {
+  .about-photo {
+    max-width: 320px;
+    margin-inline: auto;
+  }
+}
 .about-facts {
   display: flex;
   flex-wrap: wrap;
@@ -618,23 +644,30 @@ body.has-announcement .nav { top: var(--ann-h); }
   font-size: 1.08em;
 }
 .about-intro {
-  position: relative;
   font-family: var(--font-display);
   font-size: clamp(1.02rem, 1.4vw, 1.14rem);
   font-style: italic;
   line-height: 1.75;
   color: var(--color-text);
+  margin: 0;
+}
+/* The intro + expanded paragraphs share a single card */
+.about-intro-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  max-width: 64ch;
   background:
     radial-gradient(circle at 0% 0%, rgb(168 58 58 / 0.08), transparent 65%),
     var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: var(--space-5) var(--space-6) var(--space-5) calc(var(--space-6) + 6px);
-  max-width: 64ch;
   box-shadow: var(--shadow-sm);
-  margin: 0;
 }
-.about-intro::before {
+.about-intro-wrap::before {
   content: "";
   position: absolute;
   left: 0;
@@ -644,17 +677,23 @@ body.has-announcement .nav { top: var(--ann-h); }
   border-radius: var(--radius-full);
   background: linear-gradient(to bottom, var(--color-accent), transparent);
 }
-.about-intro-wrap {
-  position: relative;
-  width: fit-content;
-  max-width: 100%;
-}
 .about-more {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
+  gap: var(--space-4);
   overflow: hidden;
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--color-border);
   animation: aboutMoreReveal 420ms ease-out both;
+}
+/* Continuation paragraphs echo the intro (same serif, roman) for a cohesive card */
+.about-intro-wrap .about-more > p {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-size: clamp(0.98rem, 1.3vw, 1.06rem);
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  margin: 0;
 }
 .about-more[hidden] {
   display: none;
@@ -675,7 +714,7 @@ body.has-announcement .nav { top: var(--ann-h); }
   to   { opacity: 1; transform: translateY(0);   }
 }
 .about-read-toggle {
-  align-self: flex-start;
+  align-self: flex-end;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -691,16 +730,6 @@ body.has-announcement .nav { top: var(--ann-h); }
   cursor: pointer;
   transition: color var(--transition-base), letter-spacing var(--transition-base);
   animation: aboutReadFloat 2.6s ease-in-out infinite;
-}
-.about-read-toggle--inside {
-  position: absolute;
-  right: var(--space-4);
-  bottom: var(--space-3);
-  align-self: auto;
-  padding: 0.2rem 0.25rem;
-  background-color: rgb(251 250 247 / 0.7);
-  border-radius: 999px;
-  backdrop-filter: blur(1px);
 }
 .about-read-toggle .about-read-icon {
   display: inline-block;

@@ -450,7 +450,11 @@ class LupizeiraApp {
       return `<li><h4>${escapeHtml(h.title)}</h4>${h.description ? `<p>${escapeHtml(h.description)}</p>` : ''}</li>`;
     }).join('');
     const galleryItems = a.gallery ?? [];
-    const collage = galleryItems.length
+    const collage = galleryItems.length === 1
+      ? `<figure class="about-photo">
+          <img src="${escapeHtml(galleryItems[0].image)}" alt="${escapeHtml(galleryItems[0].alt ?? '')}" loading="lazy" decoding="async" />
+        </figure>`
+      : galleryItems.length
       ? `<div class="about-collage">${galleryItems.slice(0, 4).map((g, i) => `
           <figure class="about-collage-item about-collage-item--${escapeHtml(g.role || 'item-' + (i + 1))}">
             <img src="${escapeHtml(g.image)}" alt="${escapeHtml(g.alt ?? '')}" loading="lazy" decoding="async" />
@@ -462,7 +466,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">01</span>
+          <span class="section-index">06</span>
           <span class="section-eyebrow">${escapeHtml(a.eyebrow ?? 'A artista')}</span>
           <h2 class="section-title">${escapeHtml(a.title)}</h2>
         </div>
@@ -477,16 +481,14 @@ class LupizeiraApp {
               <div class="about-intro-wrap">
                 <p class="about-intro">${renderAboutInline(introParagraph)}</p>
                 ${extraParagraphs.length ? `
-                  <button type="button" class="about-read-toggle about-read-toggle--inside" aria-expanded="false" aria-controls="${aboutMoreId}">
+                  <div id="${aboutMoreId}" class="about-more" hidden>
+                    ${extraParagraphsHtml}
+                  </div>
+                  <button type="button" class="about-read-toggle" aria-expanded="false" aria-controls="${aboutMoreId}">
                     <span class="about-read-label">${escapeHtml(this.content.ui?.readMore ?? 'Ler mais')}</span>
                     <span class="about-read-icon" aria-hidden="true">+</span>
                   </button>
                 ` : ''}
-              </div>
-            ` : ''}
-            ${extraParagraphs.length ? `
-              <div id="${aboutMoreId}" class="about-more" hidden>
-                ${extraParagraphsHtml}
               </div>
             ` : ''}
             ${a.signature ? `<p class="about-signature">${escapeHtml(a.signature)}</p>` : ''}
@@ -519,7 +521,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">02</span>
+          <span class="section-index">01</span>
           <span class="section-eyebrow">${escapeHtml(b.eyebrow ?? 'Botânica')}</span>
           <h2 class="section-title">${escapeHtml(b.title)}</h2>
           ${b.description ? `<p class="section-subtitle botanica-description">${escapeHtml(b.description)}</p>` : ''}
@@ -577,7 +579,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">03</span>
+          <span class="section-index">02</span>
           <span class="section-eyebrow">${escapeHtml(f.eyebrow ?? 'Processo autoral')}</span>
           <h2 class="section-title">${escapeHtml(f.title)}</h2>
           ${f.subtitle ? `<p class="section-subtitle">${escapeHtml(f.subtitle)}</p>` : ''}
@@ -626,7 +628,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">04</span>
+          <span class="section-index">03</span>
           <span class="section-eyebrow">${escapeHtml(p.eyebrow ?? 'Trabalhos')}</span>
           <h2 class="section-title">${escapeHtml(p.title)}</h2>
           <p class="section-subtitle">${escapeHtml(p.subtitle ?? '')}</p>
@@ -651,7 +653,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">05</span>
+          <span class="section-index">04</span>
           <span class="section-eyebrow">${escapeHtml(s.title)}</span>
           <h2 class="section-title">${escapeHtml(s.name)}</h2>
         </div>
@@ -685,7 +687,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">06</span>
+          <span class="section-index">05</span>
           <span class="section-eyebrow">${escapeHtml(p.eyebrow ?? 'Processo')}</span>
           <h2 class="section-title">${escapeHtml(p.title)}</h2>
           <p class="section-subtitle">${escapeHtml(p.subtitle ?? '')}</p>
