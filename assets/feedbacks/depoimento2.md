@@ -1,0 +1,2 @@
+Queria deixar registrado o quanto eu sou apaixonada pelo trabalho da Lu! 🖤✨
+Além de ser super atenciosa e cuidadosa, ela tem um talento absurdo com suas mãos de fada! Cada detalhe é feito com tanto capricho que o resultado fica simplesmente perfeito. Fazer tattoo com ela é uma experiência incrível do começo ao fim e confio de olhos fechados no trabalho dela.  15.05.2026 @_abreucami

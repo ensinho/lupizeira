@@ -1,0 +1,3 @@
+Bom, primeiramente, o que me ganhou foi a sua bio: 'crio arte que se encaixa harmonicamente no seu corpo'. Depois, conversando com você pelo WhatsApp, me senti muito segura de que você me ajudaria, já que eu estava um pouco em dúvida sobre o local. E, por último, fiquei completamente encantada! Eu fui com uma ideia e você a melhorou 1000%. Poder acompanhar o desenvolvimento de tudo foi muito legal! Eu realmente queria algo que fosse feito exclusivamente para mim, porque, mesmo tentando adicionar os detalhes aos poucos pela IA, eu ainda sentia que faltava algo.
+16.05.2026
+@moran_gs3

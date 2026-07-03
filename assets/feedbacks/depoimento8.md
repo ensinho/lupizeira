@@ -1,0 +1,2 @@
+Eu só tenho a agradecer essas mãos maravilhosas e talentosas, desde o primeiro contato até o resultado final, fiquei satisfeita com o profissionalismo, o cuidado e o talento envolvidos em cada detalhe. A tatuagem superou minhas expectativas — não apenas pela técnica impecável, mas pela sensibilidade em traduzir exatamente o que eu queria. Gratidão por transformar um sentimento em arte e por tornar essa experiência tão especial. Recomendo de olhos fechados!
+E já tô juntando mais ideias pra voltar. @carolinepraxedes85   23/12/2025

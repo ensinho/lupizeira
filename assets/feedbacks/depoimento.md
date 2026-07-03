@@ -1,0 +1,2 @@
+“Conheci a Lupi através do meu irmão, que estava desesperado por uma tattoo drive through; e foi amor à primeira vista. Ela me recebeu de braços abertos e de ouvidos também. Soube colocar no papel traços e sentimentos que eu jamais seria capaz de traduzir. Tenho hoje gravado na pele momentos e histórias que só ela conseguiria desenhar. Eu queria ser muito rica pra deixar a Lupi mais rica ainda” 13/05/ 2026
+@alomands

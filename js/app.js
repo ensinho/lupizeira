@@ -209,6 +209,47 @@ class LupizeiraApp {
       if (b && !b.hidden) document.documentElement.style.setProperty('--ann-h', b.offsetHeight + 'px');
     }, { passive: true });
 
+    // Testimonial "view full" modal (delegated once; cards re-render each language change)
+    const tModal = document.getElementById('testimonial-modal');
+    const openTestimonial = (i) => {
+      const item = (this._testimonials ?? [])[i];
+      if (!tModal || !item) return;
+      const author = item.author ?? '';
+      const avatar = item.avatar
+        ? `<span class="tmodal-avatar"><img src="${escapeHtml(item.avatar)}" alt="${escapeHtml(author)}" decoding="async" /></span>`
+        : `<span class="tmodal-avatar tmodal-monogram" aria-hidden="true">${escapeHtml(monogramLetter(author))}</span>`;
+      tModal.innerHTML = `
+        <div class="tmodal-card" role="document">
+          <button type="button" class="tmodal-close" data-tmodal-close aria-label="Fechar">×</button>
+          <div class="tmodal-head">
+            ${avatar}
+            <span class="tmodal-author">${escapeHtml(author)}</span>
+            ${item.date ? `<span class="tmodal-date">${escapeHtml(item.date)}</span>` : ''}
+          </div>
+          <svg class="tmodal-quote" viewBox="0 0 24 24" aria-hidden="true"><path d="M9.13 8.5C7.8 8.5 6.7 9.6 6.7 10.93c0 1.34 1.1 2.43 2.43 2.43.34 0 .67-.07.97-.2-.05 1.97-1.3 3.55-3.06 4.07l.49 1.27c2.95-.8 4.97-3.4 4.97-6.4 0-2.04-1.66-3.6-3.37-3.6zm8.4 0c-1.34 0-2.44 1.1-2.44 2.43 0 1.34 1.1 2.43 2.43 2.43.34 0 .67-.07.97-.2-.04 1.97-1.3 3.55-3.05 4.07l.48 1.27c2.96-.8 4.98-3.4 4.98-6.4 0-2.04-1.66-3.6-3.37-3.6z"/></svg>
+          <p class="tmodal-text">${escapeHtml(item.text ?? '')}</p>
+        </div>
+      `;
+      tModal.hidden = false;
+      requestAnimationFrame(() => tModal.classList.add('is-open'));
+      document.body.classList.add('is-locked');
+      tModal.querySelector('[data-tmodal-close]')?.focus();
+    };
+    const closeTestimonial = () => {
+      if (!tModal) return;
+      tModal.classList.remove('is-open');
+      document.body.classList.remove('is-locked');
+      setTimeout(() => { tModal.hidden = true; }, 340);
+    };
+    document.addEventListener('click', (e) => {
+      const exp = e.target.closest('[data-texpand]');
+      if (exp) { openTestimonial(Number(exp.dataset.texpand)); return; }
+      if (e.target.closest('[data-tmodal-close]') || e.target === tModal) closeTestimonial();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && tModal && !tModal.hidden) closeTestimonial();
+    });
+
     this.initLightbox();
     this.bindCarouselWindowDrag();
   }
@@ -692,6 +733,9 @@ class LupizeiraApp {
         : `<span class="testimonial-avatar testimonial-monogram" aria-hidden="true">${escapeHtml(monogramLetter(author))}</span>`;
       return `
         <article class="testimonial-card" data-tindex="${i}">
+          <button type="button" class="testimonial-expand" data-texpand="${i}" aria-label="Ver depoimento completo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+          </button>
           <div class="testimonial-body">
             <header class="testimonial-head">
               ${avatar}
@@ -1010,8 +1054,11 @@ class LupizeiraApp {
       dots.forEach((d, di) => d.classList.toggle('is-active', di === index));
     };
 
-    btnPrev.addEventListener('click', () => goTo(index - 1));
-    btnNext.addEventListener('click', () => goTo(index + 1));
+    // Loop the carousel: at the right edge, next → first; at the left edge, prev → last.
+    const atStart = () => track.scrollLeft <= 2;
+    const atEnd = () => track.scrollLeft + track.clientWidth >= track.scrollWidth - 2;
+    btnPrev.addEventListener('click', () => goTo(atStart() ? cards.length - 1 : index - 1));
+    btnNext.addEventListener('click', () => goTo(atEnd() ? 0 : index + 1));
     dots.forEach((d) => d.addEventListener('click', () => goTo(Number(d.dataset.dot))));
 
     // Sync index with manual scroll
