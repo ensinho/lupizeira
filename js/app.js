@@ -373,8 +373,8 @@ class LupizeiraApp {
     if (!el) return;
     const h = this.content.hero;
     const stylesItems = this.content.styles?.items ?? [];
-    const stylesChips = stylesItems.map((t) =>
-      `<span class="hero-style-chip">${escapeHtml(t)}</span>`
+    const stylesTags = stylesItems.map((t) =>
+      `<span class="hero-style-tag">${escapeHtml(t)}</span>`
     ).join('');
     const featuredAll = h.featured ?? [];
     const PAGE_SIZE = 5;
@@ -407,9 +407,9 @@ class LupizeiraApp {
               <a href="${escapeHtml(h.ctaSecondary.href)}" class="btn btn-secondary" target="_blank" rel="noopener">${UI_ICONS.instagram}<span>${escapeHtml(h.ctaSecondary.label)}</span></a>
             </div>
             ${stylesItems.length ? `
-              <div class="hero-style-strip" aria-label="Especialidades">
-                ${stylesChips}
-              </div>
+              <p class="hero-style-tags" aria-label="Especialidades">
+                ${stylesTags}
+              </p>
             ` : ''}
           </div>
           ${featuredAll.length ? `
@@ -466,7 +466,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">06</span>
+          <span class="section-index">05</span>
           <span class="section-eyebrow">${escapeHtml(a.eyebrow ?? 'A artista')}</span>
           <h2 class="section-title">${escapeHtml(a.title)}</h2>
         </div>
@@ -476,7 +476,7 @@ class LupizeiraApp {
            
           </div>
           <div class="about-text">
-            <p class="about-lead">${escapeHtml(a.lead)}</p>
+            ${a.lead ? `<p class="about-lead">${escapeHtml(a.lead)}</p>` : ''}
             ${introParagraph ? `
               <div class="about-intro-wrap">
                 <p class="about-intro">${renderAboutInline(introParagraph)}</p>
@@ -653,7 +653,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">04</span>
+          <span class="section-index">07</span>
           <span class="section-eyebrow">${escapeHtml(s.title)}</span>
           <h2 class="section-title">${escapeHtml(s.name)}</h2>
         </div>
@@ -687,7 +687,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">05</span>
+          <span class="section-index">04</span>
           <span class="section-eyebrow">${escapeHtml(p.eyebrow ?? 'Processo')}</span>
           <h2 class="section-title">${escapeHtml(p.title)}</h2>
           <p class="section-subtitle">${escapeHtml(p.subtitle ?? '')}</p>
@@ -754,7 +754,7 @@ class LupizeiraApp {
     el.innerHTML = `
       <div class="container">
         <div class="section-header reveal">
-          <span class="section-index">07</span>
+          <span class="section-index">06</span>
           <span class="section-eyebrow">${escapeHtml(t.eyebrow ?? 'Feedbacks')}</span>
           <h2 class="section-title">${escapeHtml(t.title)}</h2>
           <p class="section-subtitle">${escapeHtml(t.subtitle ?? '')}</p>

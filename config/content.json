@@ -23,9 +23,9 @@
       { "label": { "pt": "Botânica", "en": "Botanical" }, "href": "#botanica" },
       { "label": { "pt": "Freehand", "en": "Freehand" }, "href": "#freehand" },
       { "label": { "pt": "Portfólio", "en": "Portfolio" }, "href": "#portfolio" },
-      { "label": { "pt": "Estúdio", "en": "Studio" }, "href": "#studio" },
       { "label": { "pt": "Sobre", "en": "About" }, "href": "#about" },
-      { "label": { "pt": "Depoimentos", "en": "Reviews" }, "href": "#testimonials" }
+      { "label": { "pt": "Depoimentos", "en": "Reviews" }, "href": "#testimonials" },
+      { "label": { "pt": "Estúdio", "en": "Studio" }, "href": "#studio" }
     ],
     "ctaLabel": { "pt": "Agendar", "en": "Book" }
   },
@@ -37,8 +37,8 @@
     },
     "signature": { "pt": "· tatuadora autoral ·", "en": "· original tattoo artist ·" },
     "tagline": {
-      "pt": "Tatuagem autoral com traço fino, sombras suaves e identidade única.",
-      "en": "Original tattoo art with fine lines, soft shading and a unique identity."
+      "pt": "Tatuagens delicadas, mas fortes. \n Com presença e destaque.",
+      "en": "Delicate tattoos, but bold. With presence and impact."
     },
     "avatar": "assets/Icons/LupiPFP3.jpeg",
     "avatarAlt": {
@@ -56,10 +56,10 @@
     "featuredEyebrow": { "pt": "Em destaque", "en": "Featured" },
     "featured": [
       { "image": "assets/PostsTattoo/SelectedWork1.jpg", "alt": { "pt": "Raposa em blackwork delicado com sombras suaves", "en": "Fox in delicate blackwork with soft shading" }, "label": { "pt": "Blackwork · Raposa", "en": "Blackwork · Fox" } },
-      { "image": "assets/PostsTattoo/SelectedWork6.jpg", "alt": { "pt": "Freehand sketch e tatuagem floral finalizada", "en": "Freehand sketch and finished floral tattoo" }, "label": { "pt": "Freehand", "en": "Freehand" } },
+      { "image": "assets/PostsTattoo/highlightWork11.jpg", "alt": { "pt": "Freehand sketch e tatuagem floral finalizada", "en": "Freehand sketch and finished floral tattoo" }, "label": { "pt": "Freehand", "en": "Freehand" } },
       { "image": "assets/PostsTattoo/SelectedWork4.jpg", "alt": { "pt": "Aves em fine line no braço", "en": "Birds in fine line on the arm" }, "label": { "pt": "Aves", "en": "Birds" } },
       { "image": "assets/PostsTattoo/SelectedWork2.webp", "alt": { "pt": "Floral fine line ornamental no ombro", "en": "Ornamental fine line floral on the shoulder" }, "label": { "pt": "Floral · Lírio", "en": "Floral · Lily" } },
-      { "image": "assets/PostsTattoo/SelectedWork3.jpg", "alt": { "pt": "Freehand sketch e tatuagem finalizada", "en": "Freehand sketch and finished tattoo" }, "label": { "pt": "Freehand", "en": "Freehand" } },
+      { "image": "assets/FreeHand/Freehand4.1.jpeg", "alt": { "pt": "Dragão em freehand fine line no antebraço", "en": "Freehand fine line dragon on the forearm" }, "label": { "pt": "Freehand · Dragão", "en": "Freehand · Dragon" } },
       { "image": "assets/PostsTattoo/SelectedWork7.jpg", "alt": { "pt": "Tatuagem autoral fine line", "en": "Original fine line tattoo" }, "label": { "pt": "Fine Line", "en": "Fine Line" } },
       { "image": "assets/PostsTattoo/SelectedWork5.webp", "alt": { "pt": "Retrato de pet em fine line — cachorro Pepper", "en": "Fine line pet portrait — the dog Pepper" }, "label": { "pt": "Pet · Pepper", "en": "Pet · Pepper" } },
       { "image": "assets/PostsTattoo/SelectedWork8.webp", "alt": { "pt": "Whip shading suave", "en": "Soft whip shading" }, "label": { "pt": "Whip Shading", "en": "Whip Shading" } },
@@ -106,10 +106,7 @@
   "about": {
     "title": { "pt": "Sobre a artista", "en": "About the artist" },
     "eyebrow": { "pt": "A artista", "en": "The artist" },
-    "lead": {
-      "pt": "Tatuagens delicadas, mas fortes. Com presença e destaque.",
-      "en": "Delicate tattoos, but bold. With presence and impact."
-    },
+    "lead": { "pt": "", "en": "" },
     "paragraphs": [
       {
         "pt": "Oi, eu sou a Lu! Sou tatuadora em Fortaleza, especializada em Botânica, Blackwork, Fine Line e tattoos de pets. Todos os meus trabalhos carregam o acabamento da minha técnica de <strong class=\"about-stat\">whip shading</strong>, na qual me especializei ao longo dos anos para criar sombras suaves, leves e fluidas.",
@@ -143,9 +140,9 @@
     },
     "items": [
       { "image": "assets/Botanica/Botanica1.jpg", "alt": { "pt": "Floral botânico em fine line cobrindo a coxa", "en": "Botanical fine line floral covering the thigh" } },
+      { "image": "assets/Botanica/girassolbotanica.JPEG", "alt": { "pt": "Girassol botânico em fine line", "en": "Botanical sunflower in fine line" } },
       { "image": "assets/FreeHand/Freehand3.1.jpeg", "alt": { "pt": "Lírio botânico finalizado no braço", "en": "Finished botanical lily on the arm" } },
-      { "image": "assets/PostsTattoo/SelectedWork2.webp", "alt": { "pt": "Lírio floral em fine line no ombro", "en": "Floral lily in fine line on the shoulder" } },
-      { "image": "assets/PostsTattoo/SelectedWork6.jpg", "alt": { "pt": "Composição floral com beija-flor no braço", "en": "Floral composition with a hummingbird on the arm" } }
+      { "image": "assets/PostsTattoo/SelectedWork2.webp", "alt": { "pt": "Lírio floral em fine line no ombro", "en": "Floral lily in fine line on the shoulder" } }
     ]
   },
   "freehand": {
@@ -180,13 +177,13 @@
         "id": "gerais",
         "title": { "pt": "Trabalhos Gerais", "en": "General Work" },
         "description": {
-          "pt": "Uma seleção autoral atravessando estilos — do fine line ao floral, com suas particularidades e histórias.",
-          "en": "An original selection spanning styles — from fine line to floral, each with its own details and story."
+          "pt": "Uma seleção autoral atravessando estilos — do fine line ao blackwork, com suas particularidades e histórias.",
+          "en": "An original selection spanning styles — from fine line to blackwork, each with its own details and story."
         },
         "items": [
           { "image": "assets/PostsTattoo/SelectedWork1.jpg", "alt": { "pt": "Raposa em blackwork delicado", "en": "Fox in delicate blackwork" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
           { "image": "assets/PostsTattoo/SelectedWork2.webp", "alt": { "pt": "Floral fine line ornamental", "en": "Ornamental fine line floral" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
-          { "image": "assets/PostsTattoo/SelectedWork3.jpg", "alt": { "pt": "Freehand sketch finalizado", "en": "Finished freehand sketch" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
+          { "image": "assets/PostsTattoo/SelectedWork12.JPEG", "alt": { "pt": "Freehand sketch finalizado", "en": "Finished freehand sketch" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
           { "image": "assets/PostsTattoo/SelectedWork4.jpg", "alt": { "pt": "Aves em fine line", "en": "Birds in fine line" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
           { "image": "assets/PostsTattoo/SelectedWork5.webp", "alt": { "pt": "Retrato de pet em fine line — cachorro Pepper", "en": "Fine line pet portrait — the dog Pepper" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
           { "image": "assets/PostsTattoo/SelectedWork10.webp", "alt": { "pt": "Trabalho autoral em traço fino", "en": "Original fine line work" }, "category": { "pt": "Trabalhos Gerais", "en": "General Work" } },
