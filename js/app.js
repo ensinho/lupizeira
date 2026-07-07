@@ -19,8 +19,11 @@ const UI_ICONS = {
   arrowUpRight: '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8"/></svg>',
   pin: '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>',
   arrowUp: '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
-  cart: '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 12.5a2 2 0 0 0 2 1.5h7.7a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="10" cy="21" r="1.2"/><circle cx="18" cy="21" r="1.2"/></svg>'
+  cart: '<svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 12.5a2 2 0 0 0 2 1.5h7.7a2 2 0 0 0 2-1.6L21 8H6"/><circle cx="10" cy="21" r="1.2"/><circle cx="18" cy="21" r="1.2"/></svg>',
+  usFlag: '<svg class="flag-svg" viewBox="0 0 24 16" aria-hidden="true" focusable="false"><rect width="24" height="16" fill="#fff"/><g fill="#b22234"><rect width="24" height="1.23"/><rect y="2.46" width="24" height="1.23"/><rect y="4.92" width="24" height="1.23"/><rect y="7.38" width="24" height="1.23"/><rect y="9.85" width="24" height="1.23"/><rect y="12.31" width="24" height="1.23"/><rect y="14.77" width="24" height="1.23"/></g><rect width="10" height="8.61" fill="#3c3b6e"/><g fill="#fff"><circle cx="1.6" cy="1.4" r=".55"/><circle cx="4" cy="1.4" r=".55"/><circle cx="6.4" cy="1.4" r=".55"/><circle cx="8.8" cy="1.4" r=".55"/><circle cx="2.8" cy="2.9" r=".55"/><circle cx="5.2" cy="2.9" r=".55"/><circle cx="7.6" cy="2.9" r=".55"/><circle cx="1.6" cy="4.4" r=".55"/><circle cx="4" cy="4.4" r=".55"/><circle cx="6.4" cy="4.4" r=".55"/><circle cx="8.8" cy="4.4" r=".55"/><circle cx="2.8" cy="5.9" r=".55"/><circle cx="5.2" cy="5.9" r=".55"/><circle cx="7.6" cy="5.9" r=".55"/><circle cx="1.6" cy="7.3" r=".55"/><circle cx="4" cy="7.3" r=".55"/><circle cx="6.4" cy="7.3" r=".55"/><circle cx="8.8" cy="7.3" r=".55"/></g></svg>'
 };
+
+const flagMarkup = (flag) => (flag === '\u{1F1FA}\u{1F1F8}' ? UI_ICONS.usFlag : escapeHtml(flag));
 
 const escapeHtml = (str = '') =>
   String(str).replace(/[&<>"']/g, (s) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[s]));
@@ -296,7 +299,7 @@ class LupizeiraApp {
       bar.innerHTML = `
         <div class="container announcement-bar-inner">
           <p class="announcement-bar-text">
-            ${a.flag ? `<span class="announcement-bar-flag" aria-hidden="true">${escapeHtml(a.flag)}</span>` : ''}
+            ${a.flag ? `<span class="announcement-bar-flag" aria-hidden="true">${flagMarkup(a.flag)}</span>` : ''}
             <span>${escapeHtml(a.bannerText ?? a.title)}</span>
           </p>
           <button type="button" class="announcement-bar-btn" data-ann-more>${escapeHtml(a.moreLabel ?? 'Saber mais')}</button>
@@ -325,7 +328,7 @@ class LupizeiraApp {
       modal.innerHTML = `
         <div class="announcement-card" role="document">
           <button type="button" class="announcement-close" data-ann-close aria-label="Fechar">×</button>
-          ${a.flag ? `<span class="announcement-card-flag" aria-hidden="true">${escapeHtml(a.flag)}</span>` : ''}
+          ${a.flag ? `<span class="announcement-card-flag" aria-hidden="true">${flagMarkup(a.flag)}</span>` : ''}
           ${a.eyebrow ? `<span class="announcement-card-eyebrow">${escapeHtml(a.eyebrow)}</span>` : ''}
           <h2 class="announcement-card-title">${escapeHtml(a.title)}</h2>
           ${a.date ? `<p class="announcement-card-date">${escapeHtml(a.date)}</p>` : ''}

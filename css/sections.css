@@ -154,7 +154,17 @@ body.has-announcement .nav { top: var(--ann-h); }
   font-weight: var(--font-medium);
   text-align: center;
 }
-.announcement-bar-flag { font-size: 1.05em; }
+.announcement-bar-flag { font-size: 1.05em; display: inline-flex; align-items: center; }
+.flag-svg {
+  display: inline-block;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgb(0 0 0 / 0.08);
+}
+.announcement-bar-flag .flag-svg {
+  width: 1.5em;
+  height: auto;
+  vertical-align: -0.2em;
+}
 .announcement-bar-btn {
   appearance: none;
   cursor: pointer;
@@ -239,6 +249,11 @@ body.has-announcement .nav { top: var(--ann-h); }
   display: block;
   font-size: 1.6rem;
   line-height: 1;
+}
+.announcement-card-flag .flag-svg {
+  width: 2.1rem;
+  height: auto;
+  border-radius: 3px;
 }
 .announcement-card-eyebrow {
   display: block;
